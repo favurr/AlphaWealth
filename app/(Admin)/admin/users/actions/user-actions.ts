@@ -34,6 +34,7 @@ export async function deleteUser(userId: string) {
 
 export async function getUsers() {
   return prisma.user.findMany({
+    where: { role: "USER" },
     orderBy: { createdAt: "desc" },
   });
 }
