@@ -26,7 +26,8 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     globalNotFound: true,
-  },eslint: {
+  },
+  eslint: {
     ignoreDuringBuilds: true,
   },
 };
