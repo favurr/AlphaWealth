@@ -12,7 +12,7 @@ export function GoogleLogo() {
 }
 export function GithubLogo() {
   return (
-    <img
+    <Image
       width="20"
       height="20"
       src="https://img.icons8.com/fluency/96/github.png"

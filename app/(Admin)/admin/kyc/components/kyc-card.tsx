@@ -6,6 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
 interface KycCardProps {
   user: {
@@ -99,7 +100,7 @@ export default function KycCard({ user, onCheck }: KycCardProps) {
               <DialogTitle className="px-4 pt-4">Image Preview</DialogTitle>
               <DialogClose className="btn btn-sm absolute right-2 top-2"/>
             </DialogHeader>
-            <img src={openImage} alt="KYC Image" className="w-full object-contain" />
+            <Image src={openImage} alt="KYC Image" className="w-full object-contain" />
           </DialogContent>
         </Dialog>
       )}

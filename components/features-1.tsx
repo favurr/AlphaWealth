@@ -15,6 +15,7 @@ import { ReactNode } from "react";
 import { Shield, Users } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Features() {
   return (
@@ -242,7 +243,7 @@ export function WalletFeatures() {
                         Wallet 1
                       </span>
                       <div className="ring-background size-7 ring-4">
-                        <img
+                        <Image
                           className="size-full rounded-full"
                           src="/Blockchains/btc.png"
                           alt=""
@@ -251,7 +252,7 @@ export function WalletFeatures() {
                     </div>
                     <div className="relative ml-[calc(50%-1rem)] flex items-center gap-2">
                       <div className="ring-background size-8 ring-4">
-                        <img
+                        <Image
                           className="size-full rounded-full"
                           src="/Blockchains/bnb.png"
                           alt=""
@@ -266,7 +267,7 @@ export function WalletFeatures() {
                         Wallet 3
                       </span>
                       <div className="ring-background size-7 ring-4">
-                        <img
+                        <Image
                           className="size-full rounded-full"
                           src="/Blockchains/eth.png"
                           alt=""

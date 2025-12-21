@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -159,7 +160,7 @@ export default function AccountInfo() {
           >
             <input {...getInputProps()} />
             {avatarPreview ? (
-              <img src={avatarPreview} alt="Avatar Preview" className="w-full h-full object-cover" />
+              <Image src={avatarPreview} alt="Avatar Preview" className="w-full h-full object-cover" />
             ) : isDragActive ? (
               <p className="text-xs text-gray-500">Drop here</p>
             ) : (

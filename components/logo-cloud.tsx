@@ -7,6 +7,7 @@ import {
   ShieldCheck,
   ChartNetwork,
 } from "lucide-react";
+import Image from "next/image";
 
 export function LogoCloud1() {
   return (
@@ -55,76 +56,76 @@ export default function LogoCloud3() {
           <div className="relative py-6 md:w-[calc(100%-11rem)]">
             <InfiniteSlider speedOnHover={20} speed={50} gap={112}>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-5 w-fit invert"
                   src="./logo cloud/CG-Wordmark.png"
                   alt="Coin Gecko Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
 
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-4 w-fit invert"
                   src="./logo cloud/CB-Wordmark.png"
                   alt="Coinbase Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-4 w-fit"
                   src="./logo cloud/Bybit-Wordmark.png"
                   alt="ByBit Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-5 w-fit"
                   src="./logo cloud/airswap-4.svg"
                   alt="Airswap Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-5 w-fit"
                   src="./logo cloud/bitmex.svg"
                   alt="Bitmex Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-4 w-fit"
                   src="./logo cloud/binance.svg"
                   alt="binance Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-7 w-fit"
                   src="./logo cloud/okex-1.svg"
                   alt="Okex Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
               <div className="flex">
-                <img
+                <Image
                   className="mx-auto h-6 w-fit"
                   src="./logo cloud/TW-Wordmark.png"
                   alt="Trust Wallet Logo"
                   height="24"
-                  width="auto"
+                  width="24"
                 />
               </div>
             </InfiniteSlider>

@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "@/lib/auth";
 import CopyUserId from "./copy-user-id";
+import Image from "next/image";
 
 /* ---------------- utils ---------------- */
 function formatDate(date?: Date | string | null) {
@@ -31,7 +32,7 @@ export default async function ProfilePage() {
         <div className="flex items-center gap-5">
           <div className="h-20 w-20 rounded-full bg-muted flex items-center justify-center text-2xl font-semibold">
             {user.image ? (
-              <img
+              <Image
                 src={user.image}
                 alt={user.name ?? "Avatar"}
                 className="h-20 w-20 rounded-full object-cover"

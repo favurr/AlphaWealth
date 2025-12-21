@@ -9,6 +9,7 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Image from "next/image";
 
 interface KycDialogProps {
   user: {
@@ -41,7 +42,7 @@ export default function KycDialog({ user, onClose }: KycDialogProps) {
     <Dialog open={true} onOpenChange={onClose}>
       <DialogContent className="max-w-lg">
         <DialogHeader>
-          <DialogTitle>{user.name}'s KYC Details</DialogTitle>
+          <DialogTitle>{user.name}&aposs KYC Details</DialogTitle>
         </DialogHeader>
 
         <div className="flex flex-col gap-4 mt-4 items-start">
@@ -80,7 +81,7 @@ export default function KycDialog({ user, onClose }: KycDialogProps) {
               {/* KYC Images */}
               <div className="flex gap-2 mt-2">
                 {kyc.idFrontImage && (
-                  <img
+                  <Image
                     src={kyc.idFrontImage}
                     alt="ID Front"
                     className="w-24 h-16 object-cover border cursor-pointer"
@@ -88,7 +89,7 @@ export default function KycDialog({ user, onClose }: KycDialogProps) {
                   />
                 )}
                 {kyc.idBackImage && (
-                  <img
+                  <Image
                     src={kyc.idBackImage}
                     alt="ID Back"
                     className="w-24 h-16 object-cover border cursor-pointer"
@@ -116,7 +117,7 @@ export default function KycDialog({ user, onClose }: KycDialogProps) {
                 <DialogTitle className="px-4 pt-4">Image Preview</DialogTitle>
                 <DialogClose className="btn btn-sm absolute right-2 top-2" />
               </DialogHeader>
-              <img
+              <Image
                 src={openImage}
                 alt="Preview"
                 className="w-full object-contain"

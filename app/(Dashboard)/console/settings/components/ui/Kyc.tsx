@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
@@ -191,7 +192,7 @@ export default function Kyc() {
             >
               <input {...getFrontInput()} />
               {frontPreview ? (
-                <img src={frontPreview} alt="Front ID" className="w-full h-full object-cover" />
+                <Image src={frontPreview} alt="Front ID" className="w-full h-full object-cover" />
               ) : (
                 <p className="text-xs text-gray-500">Upload</p>
               )}
@@ -207,7 +208,7 @@ export default function Kyc() {
             >
               <input {...getBackInput()} />
               {backPreview ? (
-                <img src={backPreview} alt="Back ID" className="w-full h-full object-cover" />
+                <Image src={backPreview} alt="Back ID" className="w-full h-full object-cover" />
               ) : (
                 <p className="text-xs text-gray-500">Upload</p>
               )}

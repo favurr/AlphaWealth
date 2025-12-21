@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useNotifications, NotificationItem } from "@/hooks/useNotifications";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 // Shuffle array helper
 function shuffleArray(array: NotificationItem[]) {
@@ -53,8 +54,8 @@ export default function AutoToast() {
               dark:border-neutral-800
             "
           >
-            <img
-              src={item.image}
+            <Image
+              src={item.image || ""}
               alt="icon"
               className="w-10 h-10 object-contain"
             />
