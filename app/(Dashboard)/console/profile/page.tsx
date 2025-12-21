@@ -105,11 +105,6 @@ export default async function ProfilePage() {
             <p className="text-muted-foreground">Account created</p>
             <p>{formatDate(user.createdAt)}</p>
           </div>
-
-          <div>
-            <p className="text-muted-foreground">Two Factor(2fa)</p>
-            <p>{user.twoFactorEnabled ? "Enabled" : "Disabled"}</p>
-          </div>
         </div>
       </section>
 

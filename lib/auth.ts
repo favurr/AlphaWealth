@@ -1,7 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
-import { twoFactor } from "better-auth/plugins";
 
 import { prisma } from "./prisma";
 import { sendEmail } from "@/server/send-email";
@@ -53,7 +52,7 @@ export const auth = betterAuth({
   session: {
     expiresIn: 30 * 24 * 60 * 60, // 30 days
   },
-  plugins: [nextCookies(), twoFactor()],
+  plugins: [nextCookies(),],
   trustedOrigins: [String(process.env.NEXT_PUBLIC_BASE_URL)],
 });
 
