@@ -47,8 +47,6 @@ export default function KycCard({ user, onCheck }: KycCardProps) {
       )
     : 0;
 
-  const statusLabel = progress === 100 ? "Completed" : `${progress}%`;
-
   const [openImage, setOpenImage] = useState<string | null>(null);
   const handleImageClick = (src?: string | null) => {
     if (src) setOpenImage(src);

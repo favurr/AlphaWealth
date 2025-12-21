@@ -11,7 +11,7 @@ interface User {
   email: string;
   image?: string | null;
   kycStatus: string;
-  kycDetails: any;
+  kycDetails: unknown;
 }
 
 export default function KycPage() {
@@ -26,7 +26,7 @@ export default function KycPage() {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
 
-      observer.current = new IntersectionObserver(entries => {
+      observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           loadUsers();
         }
@@ -40,11 +40,12 @@ export default function KycPage() {
   const loadUsers = async () => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/admin/kyc-users`);
+      const res = await fetch("/api/admin/kyc-users");
       const newUsers: User[] = await res.json();
-      setUsers(prev => [...prev, ...newUsers]);
+
+      setUsers((prev) => [...prev, ...newUsers]);
       if (newUsers.length < 20) setHasMore(false);
-    } catch (err) {
+    } catch {
       toast.error("Failed to load users");
     } finally {
       setLoading(false);
@@ -65,7 +66,13 @@ export default function KycPage() {
             </div>
           );
         }
-        return <KycCard key={user.id} user={user} onCheck={() => setSelectedUser(user)} />;
+        return (
+          <KycCard
+            key={user.id}
+            user={user}
+            onCheck={() => setSelectedUser(user)}
+          />
+        );
       })}
       {selectedUser && (
         <KycDialog user={selectedUser} onClose={() => setSelectedUser(null)} />
