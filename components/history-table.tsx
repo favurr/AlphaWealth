@@ -48,7 +48,7 @@ export default async function HistoryPage() {
           {history.map((record) => (
             <TableRow key={record.id}>
               <TableCell>{record.id.slice(-8)}</TableCell>
-              <TableCell className="min-w-[220px]">{record.amount.toFixed(2)}</TableCell>
+              <TableCell className="min-w-[220px]">{record.amount.toFixed(8)}</TableCell>
               <TableCell>{record.currency}</TableCell>
               <TableCell>{record.type}</TableCell>
               <TableCell className="text-right">{new Date(record.createdAt).toLocaleString()}</TableCell>
