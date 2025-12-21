@@ -184,7 +184,7 @@ export default function NavUser() {
 
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link href="console/dashboard" className="flex items-center gap-2">
+                <Link href="/console/dashboard" className="flex items-center gap-2">
                   <IconCreditCard />
                   Wallet
                 </Link>
