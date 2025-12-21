@@ -22,6 +22,7 @@ export async function GET(req: Request) {
       },
     },
     orderBy: { createdAt: "desc" },
+    where: { role: "USER" },
   });
 
   return NextResponse.json(users);
