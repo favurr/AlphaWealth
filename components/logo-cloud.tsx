@@ -94,7 +94,7 @@ export default function LogoCloud3() {
               </div>
               <div className="flex">
                 <Image
-                  className="mx-auto h-5 w-fit"
+                  className="mx-auto w-fit"
                   src="./logo cloud/bitmex.svg"
                   alt="Bitmex Logo"
                   height="24"
