@@ -57,7 +57,7 @@ export default function LogoCloud3() {
             <InfiniteSlider speedOnHover={20} speed={50} gap={112}>
               <div className="flex">
                 <Image
-                  className="mx-auto h-5 w-fit invert"
+                  className="mx-auto w-fit invert"
                   src="./logo cloud/CG-Wordmark.png"
                   alt="Coin Gecko Logo"
                   height="24"
