@@ -85,7 +85,7 @@ export default function HeroSection() {
               <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                 <AnimatedGroup variants={transitionVariants}>
                   <Link
-                    href="#link"
+                    href="/privacy"
                     className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950"
                   >
                     <span className="text-foreground text-sm">
@@ -216,7 +216,7 @@ export function WalletHeroSection() {
 
               <div className="mt-12 flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                 <Button asChild size="lg" className="px-5 text-base">
-                  <Link href="#link">
+                  <Link href="/auth/login">
                     <span className="text-nowrap">Access your wallet</span>
                   </Link>
                 </Button>
@@ -508,7 +508,7 @@ export function SwapHeroSection() {
 
               <div className="flex flex-col items-center justify-center gap-2 sm:flex-row lg:justify-start">
                 <Button asChild size="lg" className="px-5 text-base">
-                  <Link href="#link">
+                  <Link href="/auth/login">
                     <span className="text-nowrap">Access your wallet</span>
                   </Link>
                 </Button>
