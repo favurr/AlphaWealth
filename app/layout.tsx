@@ -56,15 +56,20 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script id="chatgo-widget" strategy="afterInteractive">
-          {`(function(){
-           var s=document.createElement('script');
-           s.src='https://www.chatgonow.com/api/widget.js?key=d5a63a14f9dde85a03dacd504007c301123552bec6a2dd23';
-           s.async=true;document.head.appendChild(s);
-         })();`}
-        </Script>
+        {/* Tawk.to chat script moved to body via next/script for correct client-side loading */}
       </head>
       <body className={`${wixMadeforDisplay.variable} antialiased`}>
+        <Script id="tawk" strategy="afterInteractive">
+          {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/65ab0f638d261e1b5f559d12/1jd50u5i7';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();`}
+        </Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
