@@ -127,7 +127,7 @@ export default function BuyPage() {
               <a href="/support/buy">Learn how to buy</a>
             </Button>
             <Button asChild size="sm">
-              <a href="/wallet">View your wallet</a>
+              <a href="/console/dashboard">View your wallet</a>
             </Button>
           </div>
 

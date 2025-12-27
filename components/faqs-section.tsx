@@ -46,7 +46,7 @@ export function FaqsSection() {
   });
 
   return (
-    <div className="mx-auto min-h-screen w-full py-8 max-w-3xl md:border-x">
+    <div className="mx-auto min-h-screen w-full py-8 max-w-3xl">
       <div className="px-4 py-16 lg:px-6">
         <h1 className="mb-4 font-semibold text-3xl md:text-4xl">
           Frequently Asked Questions
@@ -67,8 +67,6 @@ export function FaqsSection() {
           </InputGroupAddon>
         </InputGroup>
       </div>
-
-      <div className="absolute inset-x-0 h-px bg-border" />
 
       <div className="flex flex-wrap gap-1 border-b px-4 md:gap-3">
         {categories.map((cat) => (
