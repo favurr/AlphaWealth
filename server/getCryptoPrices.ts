@@ -27,9 +27,9 @@ export async function getDepositCryptoPrices() {
   const data = await res.json();
 
   return {
-    BTC: data.bitcoin.usd,
-    ETH: data.ethereum.usd,
-    USDT: data.tether.usd,
-    USDC: data["usd-coin"].usd,
+    BTC: 1 * data.bitcoin.usd,
+    ETH: 1 * data.ethereum.usd,
+    USDT: 1 * data.tether.usd,
+    USDC: 1 * data["usd-coin"].usd,
   };
 }
