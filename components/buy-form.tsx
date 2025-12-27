@@ -231,7 +231,7 @@ export default function BuyForm() {
                     prices[pendingValues.asset] !== undefined && (
                       <>
                         ($
-                        {prices[pendingValues.asset] * pendingValues.amount})
+                        {pendingValues.amount * prices[pendingValues.asset]})
                       </>
                     )}
                 </strong>{" "}
