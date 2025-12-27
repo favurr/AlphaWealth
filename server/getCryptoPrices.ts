@@ -15,3 +15,21 @@ export async function getCryptoPrices() {
     USDC: 1 / data["usd-coin"].usd,
   };
 }
+
+export async function getDepositCryptoPrices() {
+  const res = await fetch(
+    "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,usd-coin&vs_currencies=usd",
+    { cache: "no-store" } // ensures fresh data
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch crypto prices");
+
+  const data = await res.json();
+
+  return {
+    BTC: data.bitcoin.usd,
+    ETH: data.ethereum.usd,
+    USDT: data.tether.usd,
+    USDC: data["usd-coin"].usd,
+  };
+}

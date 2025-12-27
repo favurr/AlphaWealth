@@ -33,7 +33,7 @@ import {
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { getCryptoPrices } from "@/server/getCryptoPrices";
+import { getDepositCryptoPrices } from "@/server/getCryptoPrices";
 import Image from "next/image";
 import { Copy } from "lucide-react";
 import { createDepositHistory } from "@/server/createDepositHistory";
@@ -93,7 +93,7 @@ export default function BuyForm() {
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        const result = await getCryptoPrices();
+        const result = await getDepositCryptoPrices();
         setPrices(result);
       } catch (err) {
         console.error("Failed to fetch crypto prices", err);
