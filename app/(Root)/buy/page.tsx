@@ -1,6 +1,19 @@
 // app/(Root)/buy/page.tsx
 import CallToAction from "@/components/call-to-action";
 import BuyForm from "@/components/buy-form";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 export default function BuyPage() {
   return (
@@ -48,11 +61,113 @@ export default function BuyPage() {
       <section className="py-12">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-3xl font-semibold mb-4">How it works</h2>
-          <p className="text-muted-foreground">
-            Select an asset and amount, follow the instructions to complete the
-            payment, and your balance will be updated when the payment is
-            confirmed.
+          <p className="text-muted-foreground max-w-2xl mb-8">
+            Buying crypto on our platform is secure and straightforward. Pick an
+            asset and amount, choose a payment method, follow the guided steps,
+            and your balance will update once the transaction is confirmed
+            on-chain or by the payment provider.
           </p>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
+                      1
+                    </div>
+                    <CardTitle>Choose asset & amount</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Select from popular tokens (BTC, ETH, USDT) or search for
+                    other supported assets and enter how much you'd like to buy.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+
+            <div>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
+                      2
+                    </div>
+                    <CardTitle>Select payment method</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Use crypto transfers, bank transfers, or supported
+                    third-party providers. We show expected fees and estimated
+                    arrival times.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+
+            <div>
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
+                      3
+                    </div>
+                    <CardTitle>Confirm & receive</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Review details and confirm the payment. Funds appear in your
+                    wallet after required confirmations or provider settlement.
+                  </CardDescription>
+                </CardHeader>
+              </Card>
+            </div>
+          </div>
+
+          <div className="mt-8 flex items-center gap-4">
+            <Button asChild variant="outline" size="sm">
+              <a href="/support/buy">Learn how to buy</a>
+            </Button>
+            <Button asChild size="sm">
+              <a href="/wallet">View your wallet</a>
+            </Button>
+          </div>
+
+          <div className="mt-10">
+            <h3 className="text-lg font-medium mb-4">
+              Frequently asked questions
+            </h3>
+            <Accordion type="single" collapsible>
+              <AccordionItem value="q1">
+                <AccordionTrigger>
+                  How long until funds appear?
+                </AccordionTrigger>
+                <AccordionContent>
+                  Most on-chain transfers require a few confirmations before
+                  appearing; card or provider-based methods depend on the
+                  provider's settlement times, which we show during checkout.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="q2">
+                <AccordionTrigger>
+                  Which payment methods are supported?
+                </AccordionTrigger>
+                <AccordionContent>
+                  We support crypto transfers, bank transfers, and selected
+                  third-party processors (availability varies by region). You
+                  can see applicable options for your country at checkout.
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value="q3">
+                <AccordionTrigger>Are there limits or fees?</AccordionTrigger>
+                <AccordionContent>
+                  We display any fees and limits before you confirm a purchase.
+                  For higher limits or special payment methods, KYC verification
+                  may be required.
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </div>
         </div>
       </section>
 
