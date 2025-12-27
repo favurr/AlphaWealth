@@ -1,6 +1,6 @@
 // app/(Root)/buy/page.tsx
-import DepositForm from "@/components/deposit-form";
 import CallToAction from "@/components/call-to-action";
+import BuyForm from "@/components/buy-form";
 
 export default function BuyPage() {
   return (
@@ -39,13 +39,13 @@ export default function BuyPage() {
           <div className="mt-8 lg:mt-0 lg:w-1/2">
             <div className="mx-auto max-w-md rounded-2xl border bg-background p-6 shadow">
               <h2 className="mb-4 text-lg font-medium">Make a deposit</h2>
-              <DepositForm />
+              <BuyForm />
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-12 bg-muted">
+      <section className="py-12">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-3xl font-semibold mb-4">How it works</h2>
           <p className="text-muted-foreground">
