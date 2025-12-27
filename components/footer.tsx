@@ -6,15 +6,15 @@ export function Footer() {
 	const company = [
 		{
 			title: "About Us",
-			href: "#",
+			href: "/about",
 		},
 		{
-			title: "Careers",
-			href: "#",
+			title: "FAQs",
+			href: "/faq",
 		},
 		{
-			title: "Brand assets",
-			href: "#",
+			title: "support",
+			href: "/support",
 		},
 		{
 			title: "Privacy Policy",
@@ -28,24 +28,20 @@ export function Footer() {
 
 	const resources = [
 		{
-			title: "Blog",
-			href: "#",
+			title: "Wallet",
+			href: "/wallet",
 		},
 		{
-			title: "Help Center",
-			href: "#",
+			title: "Swap",
+			href: "/swap",
 		},
 		{
-			title: "Contact Support",
-			href: "#",
-		},
-		{
-			title: "Community",
-			href: "#",
+			title: "Buy Crypto",
+			href: "/buy",
 		},
 		{
 			title: "Security",
-			href: "#",
+			href: "/security",
 		},
 	];
 

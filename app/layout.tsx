@@ -55,10 +55,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* Tawk.to chat script moved to body via next/script for correct client-side loading */}
-      </head>
+      <head></head>
       <body className={`${wixMadeforDisplay.variable} antialiased`}>
+        {/* Start of Tawk.to Script */}
         <Script id="tawk" strategy="afterInteractive">
           {`var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
@@ -70,6 +69,7 @@ s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
 })();`}
         </Script>
+        {/* End of Tawk.to Script */}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
