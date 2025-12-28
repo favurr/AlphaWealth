@@ -109,7 +109,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
   return (
     <aside className="w-full">
       <div className="sticky top-28">
-        <div className="bg-background border rounded p-3">
+        <div className="bg-card text-card-foreground border rounded p-3 shadow-sm">
           <div className="flex items-center gap-2 mb-3">
             <Menu className="size-4" />
             <span className="text-sm font-semibold">On this page</span>
@@ -135,10 +135,10 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
                         history.replaceState(null, "", `#${t.id}`);
                       }
                     }}
-                    className={`flex items-start gap-2 pl-2 py-1 rounded-l border-l-2 ${
+                    className={`flex items-start gap-2 pl-2 py-1 rounded-l border-l-2 transition-colors duration-150 ${
                       active === t.id
                         ? "border-primary font-semibold text-primary"
-                        : "border-transparent text-muted-foreground"
+                        : "border-transparent text-muted-foreground hover:text-foreground"
                     }`}
                   >
                     <span
@@ -166,10 +166,10 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
                                 history.replaceState(null, "", `#${c.id}`);
                               }
                             }}
-                            className={`flex items-start gap-2 pl-2 py-0.5 rounded-l border-l-2 text-sm ${
+                            className={`flex items-start gap-2 pl-2 py-0.5 rounded-l border-l-2 text-sm transition-colors duration-150 ${
                               active === c.id
                                 ? "border-primary font-semibold text-primary"
-                                : "border-transparent text-muted-foreground"
+                                : "border-transparent text-muted-foreground hover:text-foreground"
                             }`}
                           >
                             <span
