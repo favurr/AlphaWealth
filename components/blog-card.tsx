@@ -10,21 +10,17 @@ import {
   CardFooter,
 } from "@/components/ui/card";
 
-export default function BlogCard({
-  post,
-}: {
-  post: { slug: string; title: string; excerpt: string; date: string };
-}) {
+export default function BlogCard() {
   return (
     <Card className="hover:shadow-md transition-shadow duration-150">
       <CardHeader>
         <div>
-          <CardDescription>{post.date}</CardDescription>
-          <CardTitle className="text-lg">{post.title}</CardTitle>
+          <CardDescription>ygew</CardDescription>
+          <CardTitle className="text-lg">iq7t3</CardTitle>
         </div>
         <div className="ml-2">
           <Link
-            href={`/blog/${post.slug}`}
+            href={`/blog/$wywqg`}
             className="text-sm text-primary font-medium hover:underline"
           >
             Read
@@ -32,7 +28,7 @@ export default function BlogCard({
         </div>
       </CardHeader>
       <div className="px-6 pb-6 pt-0">
-        <p className="text-muted-foreground text-sm">{post.excerpt}</p>
+        <p className="text-muted-foreground text-sm">132de</p>
       </div>
       <CardFooter>
         <div className="text-sm text-muted-foreground">Tags</div>
