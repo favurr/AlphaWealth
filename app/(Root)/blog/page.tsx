@@ -1,10 +1,27 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Script from "next/script";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function BlogHomePage() {
   const [query, setQuery] = useState("");
+  const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  useEffect(() => {
+    // reset active index when query changes
+    setActiveIndex(-1);
+  }, [query]);
 
   const banners = [
     {
@@ -111,6 +128,67 @@ export default function BlogHomePage() {
     [query]
   );
 
+  // Suggestions: combine lists and search only for suggestions (doesn't filter the page cards)
+  const suggestions = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    if (!q) return [];
+    return [...trending, ...supportTopics].filter((it) =>
+      (it.title + " " + it.excerpt).toLowerCase().includes(q)
+    );
+  }, [query]);
+
+  useEffect(() => {
+    setOpen(query.trim().length > 0 && suggestions.length > 0);
+    setActiveIndex(-1);
+  }, [query, suggestions.length]);
+
+  function highlight(text: string, q: string) {
+    if (!q) return text;
+    const lc = text.toLowerCase();
+    const qi = lc.indexOf(q.toLowerCase());
+    if (qi === -1) return text;
+    const before = text.slice(0, qi);
+    const match = text.slice(qi, qi + q.length);
+    const after = text.slice(qi + q.length);
+    return (
+      <>
+        {before}
+        <span className="bg-yellow-100 rounded px-0.5">{match}</span>
+        {after}
+      </>
+    );
+  }
+
+  function selectSuggestion(s: { id: string; title: string }) {
+    setQuery(s.title);
+    setOpen(false);
+    setActiveIndex(-1);
+    inputRef.current?.blur();
+  }
+
+  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (!open) {
+      if (e.key === "ArrowDown") setOpen(true);
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.min(i + 1, suggestions.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActiveIndex((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      if (activeIndex >= 0 && suggestions[activeIndex]) {
+        selectSuggestion(suggestions[activeIndex]);
+      }
+    } else if (e.key === "Escape") {
+      setOpen(false);
+      setActiveIndex(-1);
+    }
+  }
+
   function openChat() {
     // Try to open Tawk widget if available, otherwise do nothing
     try {
@@ -128,18 +206,65 @@ export default function BlogHomePage() {
   }
 
   return (
-    <main className="py-16">
+    <main className="py-18">
       <div className="mx-auto max-w-7xl px-6">
         <header className="max-w-4xl mb-10">
           <h1 className="text-4xl font-semibold mb-4">How can we help you</h1>
-          <div className="flex items-center gap-4">
-            <input
-              aria-label="Search articles"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search our FAQs"
-              className="w-full rounded-full border px-6 py-3 shadow-sm placeholder:text-muted-foreground"
-            />
+          <div className="relative flex items-center gap-4">
+            <DropdownMenu open={open} onOpenChange={setOpen}>
+              <DropdownMenuTrigger asChild>
+                <div className="flex gap-3 w-full items-center">
+                  <Input
+                    aria-label="Search articles"
+                    ref={inputRef}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={onKeyDown}
+                    placeholder="Search our FAQs"
+                    className="rounded-full px-6 py-3 shadow-sm placeholder:text-muted-foreground"
+                    onFocus={() =>
+                      setOpen(query.trim().length > 0 && suggestions.length > 0)
+                    }
+                  />
+                </div>
+              </DropdownMenuTrigger>
+
+              <DropdownMenuContent className="w-[40rem] p-0">
+                <div className="p-3">
+                  <DropdownMenuLabel className="text-sm font-medium">
+                    Suggestions
+                  </DropdownMenuLabel>
+                </div>
+
+                {suggestions.slice(0, 6).map((s, idx) => (
+                  <DropdownMenuItem
+                    key={s.id}
+                    onSelect={(e) => {
+                      e.preventDefault();
+                      selectSuggestion(s);
+                    }}
+                    className={`flex flex-col gap-0.5 px-4 py-3 ${
+                      idx === activeIndex ? "bg-muted/10" : ""
+                    }`}
+                    onMouseEnter={() => setActiveIndex(idx)}
+                  >
+                    <span className="text-sm font-medium">
+                      {highlight(s.title, query)}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {highlight(s.excerpt, query)}
+                    </span>
+                  </DropdownMenuItem>
+                ))}
+
+                {suggestions.length === 0 && (
+                  <div className="px-4 py-3 text-sm text-muted-foreground">
+                    No matching articles
+                  </div>
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             <button
               className="rounded-full bg-primary px-4 py-2 text-white font-medium"
               onClick={(e) => e.preventDefault()}
@@ -198,22 +323,6 @@ export default function BlogHomePage() {
                 onClick={(e) => e.preventDefault()}
               >
                 Learn more
-              </button>
-            </div>
-          </div>
-
-          <div
-            className="rounded-2xl p-6 text-white"
-            style={{ background: "linear-gradient(90deg,#7c3aed,#ec4899)" }}
-          >
-            <h3 className="text-xl font-semibold">{banners[2].title}</h3>
-            <p className="mt-2 text-sm opacity-90">{banners[2].subtitle}</p>
-            <div className="mt-4">
-              <button
-                className="rounded-full bg-white text-purple-600 px-4 py-2"
-                onClick={(e) => e.preventDefault()}
-              >
-                Connect wallet to access →
               </button>
             </div>
           </div>
@@ -295,20 +404,20 @@ export default function BlogHomePage() {
 
         {/* Introducing banner */}
         <section className="mb-6">
-          <div
-            className="rounded-2xl p-10 text-white"
-            style={{ background: "linear-gradient(90deg,#111827,#0ea5e9)" }}
-          >
+          <Card>
             <h2 className="text-3xl font-semibold">Introducing AlphaWealth</h2>
             <p className="mt-2 text-lg opacity-90">
               Smart tools and insights to help you trade with confidence.
             </p>
-          </div>
+          </Card>
         </section>
 
         {/* CTA */}
         <section className="mb-16 mt-4 flex items-center justify-between gap-6">
-          <div>
+          <div
+            className="rounded-2xl p-10 text-white"
+            style={{ background: "linear-gradient(90deg,#111827,#0ea5e9)" }}
+          >
             <p className="font-medium">Now what you are looking for?</p>
           </div>
           <div>

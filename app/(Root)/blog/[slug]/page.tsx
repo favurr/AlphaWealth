@@ -8,14 +8,14 @@ import ContactWidget from "@/components/contact";
 export default function BlogPostPage() {
     return (
       <main className="py-24">
-        <div className="mx-auto max-w-7xl px-6 lg:grid lg:grid-cols-[1fr_240px_360px] lg:gap-12">
+        <div className="mx-auto max-w-7xl px-6 lg:flex lg:flex-row lg:gap-12">
           {/* Left: Support article */}
-          <div className="lg:col-span-1">
+          <div className=" lg:flex-1 ">
             <SupportArticle />
           </div>
 
           {/* Middle: TOC */}
-          <div className="hidden lg:block lg:col-start-2">
+          <div className="hidden lg:block">
             <div className="sticky top-28">
               <SupportToc />
             </div>
