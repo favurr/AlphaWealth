@@ -202,19 +202,19 @@ export default function SupportPage() {
             </section>
           </article>
         </div>
+      </div>
 
-        {/* Middle: TOC column (aligned left next to content) */}
-        <div className="hidden lg:block lg:col-start-2">
-          <div className="sticky top-28">
-            <SupportToc />
-          </div>
+      {/* Middle: TOC column (aligned left next to content) */}
+      <div className="hidden lg:block lg:col-start-2">
+        <div className="sticky top-28">
+          <SupportToc />
         </div>
+      </div>
 
-        {/* Right: Contact column */}
-        <div className="hidden lg:block lg:col-start-3">
-          <div className="sticky top-28 max-h-[calc(100vh-112px)] overflow-auto">
-            <ContactWidget />
-          </div>
+      {/* Right: Contact column */}
+      <div className="hidden lg:block lg:col-start-3">
+        <div className="sticky top-28 max-h-[calc(100vh-112px)] overflow-auto">
+          <ContactWidget />
         </div>
       </div>
 
