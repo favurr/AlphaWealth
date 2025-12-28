@@ -13,7 +13,7 @@ export function Footer() {
 			href: "/faq",
 		},
 		{
-			title: "support",
+			title: "Contact Support",
 			href: "/support",
 		},
 		{
@@ -42,6 +42,10 @@ export function Footer() {
 		{
 			title: "Security",
 			href: "/security",
+		},
+		{
+			title: "Blog",
+			href: "/blog",
 		},
 	];
 
