@@ -15,60 +15,6 @@ export default function SupportPage() {
             section using the links below.
           </p>
 
-          {/* Table of contents (sticky + active highlighting) */}
-          <div className="mt-6 mb-8">
-            <SupportToc
-              items={[
-                {
-                  id: "getting-started",
-                  title: "Getting started",
-                  icon: "getting_started",
-                },
-                {
-                  id: "account-verification",
-                  title: "Account & verification",
-                  icon: "account",
-                },
-                {
-                  id: "buying-and-deposits",
-                  title: "Buying & deposits",
-                  icon: "buying",
-                },
-                {
-                  id: "withdrawals-and-transfers",
-                  title: "Withdrawals & transfers",
-                  icon: "withdrawals",
-                },
-                {
-                  id: "payments-fees-limits",
-                  title: "Payments, fees & limits",
-                  icon: "fees",
-                },
-                { id: "security", title: "Security", icon: "security" },
-                {
-                  id: "kyc-and-compliance",
-                  title: "KYC & compliance",
-                  icon: "kyc",
-                },
-                {
-                  id: "troubleshooting",
-                  title: "Troubleshooting",
-                  icon: "troubleshooting",
-                },
-                {
-                  id: "integrations-api",
-                  title: "Integrations & API",
-                  icon: "integrations",
-                },
-                {
-                  id: "contact-reporting",
-                  title: "Contact & reporting",
-                  icon: "contact",
-                },
-              ]}
-            />
-          </div>
-
           <section id="getting-started" className="scroll-mt-24">
             <h2>Getting started</h2>
             <p>
@@ -249,10 +195,20 @@ export default function SupportPage() {
           </section>
         </article>
 
-        {/* Right: Fixed contact widget (desktop only) */}
-        <aside className="hidden lg:block lg:w-[360px]">
-          <div className="fixed top-28 right-8 w-[360px] max-h-[calc(100vh-112px)] overflow-auto">
-            <ContactWidget />
+        {/* Right: Sidebar with TOC (left) and Contact widget (right) */}
+        <aside className="hidden lg:block lg:w-[420px]">
+          <div className="grid grid-cols-[220px_1fr] gap-6">
+            {/* TOC column (left in sidebar) */}
+            <div className="col-start-1">
+              <SupportToc />
+            </div>
+
+            {/* Contact widget column (right in sidebar) - sticky inside container */}
+            <div className="col-start-2">
+              <div className="sticky top-28">
+                <ContactWidget />
+              </div>
+            </div>
           </div>
         </aside>
       </div>

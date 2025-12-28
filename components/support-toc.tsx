@@ -13,9 +13,16 @@ import {
   Bug,
   Code,
   Mail,
+  Menu,
 } from "lucide-react";
 
 type Item = { id: string; title: string; icon?: string };
+
+type TocItem = {
+  id: string;
+  title: string;
+  children?: Array<{ id: string; title: string }>;
+};
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   getting_started: <BookOpen className="size-4 mr-2" />,
@@ -30,10 +37,39 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   contact: <Mail className="size-4 mr-2" />,
 };
 
-export default function SupportToc({ items }: { items: Item[] }) {
+export default function SupportToc({ items }: { items?: TocItem[] }) {
+  const [toc, setToc] = useState<TocItem[]>(items || []);
   const [active, setActive] = useState<string | null>(null);
 
+  // Build TOC from article headings if items not provided
   useEffect(() => {
+    if (items && items.length) return;
+
+    const headings = Array.from(
+      document.querySelectorAll("article h2, article h3")
+    ) as HTMLElement[];
+
+    const built: TocItem[] = [];
+    headings.forEach((h) => {
+      if (!h.id) return;
+      if (h.tagName.toLowerCase() === "h2") {
+        built.push({ id: h.id, title: h.innerText, children: [] });
+      } else if (h.tagName.toLowerCase() === "h3") {
+        const last = built[built.length - 1];
+        if (last) last.children!.push({ id: h.id, title: h.innerText });
+      }
+    });
+
+    if (built.length) setToc(built);
+  }, [items]);
+
+  // Intersection observer for active heading
+  useEffect(() => {
+    const ids = toc.flatMap((t) => [
+      t.id,
+      ...(t.children || []).map((c) => c.id),
+    ]);
+
     const obs = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -44,45 +80,117 @@ export default function SupportToc({ items }: { items: Item[] }) {
       { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
 
-    items.forEach((it) => {
-      const el = document.getElementById(it.id);
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
       if (el) obs.observe(el);
     });
 
     return () => obs.disconnect();
-  }, [items]);
+  }, [toc]);
+
+  // on-load hash support (deep links)
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!toc.length) return;
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        // delay so layout settles
+        setTimeout(
+          () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
+          50
+        );
+      }
+    }
+  }, [toc]);
 
   return (
-    <nav className="sticky top-28 rounded border bg-background p-4">
-      <strong className="block mb-2">Contents</strong>
-      <ul className="space-y-1 text-sm">
-        {items.map((it) => (
-          <li key={it.id}>
-            <a
-              href={`#${it.id}`}
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById(it.id);
-                if (el) {
-                  el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  history.replaceState(null, "", `#${it.id}`);
-                }
-              }}
-              className={
-                "flex items-center gap-2 rounded px-2 py-1 hover:bg-accent/5 " +
-                (active === it.id
-                  ? "font-semibold text-primary"
-                  : "text-muted-foreground")
-              }
-            >
-              <span className="flex items-center">
-                {ICON_MAP[it.icon || it.id] ?? null}
-              </span>
-              <span>{it.title}</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <aside className="w-full">
+      <div className="sticky top-28">
+        <div className="bg-background border rounded p-3">
+          <div className="flex items-center gap-2 mb-3">
+            <Menu className="size-4" />
+            <span className="text-sm font-semibold">On this page</span>
+          </div>
+
+          <div className="relative">
+            {/* vertical line */}
+            <div className="absolute left-4 top-9 bottom-4 w-px bg-border" />
+
+            <ul className="ml-6 space-y-2 text-sm">
+              {toc.map((t) => (
+                <li key={t.id} className="relative">
+                  <a
+                    href={`#${t.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById(t.id);
+                      if (el) {
+                        el.scrollIntoView({
+                          behavior: "smooth",
+                          block: "start",
+                        });
+                        history.replaceState(null, "", `#${t.id}`);
+                      }
+                    }}
+                    className={`flex items-start gap-2 pl-2 py-1 rounded-l border-l-2 ${
+                      active === t.id
+                        ? "border-primary font-semibold text-primary"
+                        : "border-transparent text-muted-foreground"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-2.5 w-2.5 rounded-full mt-1 ${
+                        active === t.id ? "bg-primary" : "bg-muted-foreground"
+                      }`}
+                    />
+                    <span>{t.title}</span>
+                  </a>
+
+                  {t.children && t.children.length > 0 && (
+                    <ul className="mt-2 ml-6 space-y-1">
+                      {t.children.map((c) => (
+                        <li key={c.id}>
+                          <a
+                            href={`#${c.id}`}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              const el = document.getElementById(c.id);
+                              if (el) {
+                                el.scrollIntoView({
+                                  behavior: "smooth",
+                                  block: "start",
+                                });
+                                history.replaceState(null, "", `#${c.id}`);
+                              }
+                            }}
+                            className={`flex items-start gap-2 pl-2 py-0.5 rounded-l border-l-2 text-sm ${
+                              active === c.id
+                                ? "border-primary font-semibold text-primary"
+                                : "border-transparent text-muted-foreground"
+                            }`}
+                          >
+                            <span
+                              className={`inline-block h-1.5 w-1.5 rounded-full mt-2 ${
+                                active === c.id
+                                  ? "bg-primary"
+                                  : "bg-muted-foreground"
+                              }`}
+                            />
+                            <span>{c.title}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
   );
 }

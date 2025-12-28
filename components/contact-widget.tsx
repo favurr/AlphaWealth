@@ -23,17 +23,17 @@ export default function ContactWidget() {
         </p>
 
         <form className="space-y-3">
-          <div>
+          <div className="flex flex-col space-y-1">
             <Label htmlFor="cw-name">Name</Label>
             <Input id="cw-name" placeholder="Full name" />
           </div>
 
-          <div>
+          <div className="flex flex-col space-y-1">
             <Label htmlFor="cw-email">Email</Label>
             <Input id="cw-email" type="email" placeholder="you@company.com" />
           </div>
 
-          <div>
+          <div className="flex flex-col space-y-1">
             <Label htmlFor="cw-topic">Topic</Label>
             <Select>
               <SelectTrigger>
@@ -51,7 +51,7 @@ export default function ContactWidget() {
             </Select>
           </div>
 
-          <div>
+          <div className="flex flex-col space-y-1">
             <Label htmlFor="cw-msg">Message</Label>
             <Textarea id="cw-msg" rows={3} />
           </div>
