@@ -32,15 +32,9 @@ export default function BlogHomePage() {
     {
       id: "free-support",
       title: "Get Free Support",
-      subtitle: "Receive a reply within 72 hours — ask our chatbot",
+      subtitle: "Receive a reply within 72 hours",
       color: "bg-white",
       border: true,
-    },
-    {
-      id: "exclusive",
-      title: "Premium for TWT holders",
-      subtitle: "Lock 50 TWT for priority and exclusive services",
-      color: "bg-gradient-to-r from-purple-600 to-pink-600",
     },
   ];
 
@@ -204,9 +198,9 @@ export default function BlogHomePage() {
   }
 
   return (
-    <main className="py-18 mt-4">
+    <main className="pb-18 pt-28">
       <div className="mx-auto max-w-7xl px-6">
-        <header className="max-w-4xl mb-10">
+        <header className="max-w-4xl mb-16">
           <h1 className="text-4xl font-semibold mb-4">How can we help you</h1>
           <div className="relative flex items-center gap-4">
             <div className="w-full">
@@ -264,13 +258,6 @@ export default function BlogHomePage() {
                 </div>
               )}
             </div>
-
-            <Button
-              className="rounded-full bg-primary px-4 py-2 text-white font-medium"
-              onClick={(e) => e.preventDefault()}
-            >
-              Search
-            </Button>
           </div>
         </header>
 
