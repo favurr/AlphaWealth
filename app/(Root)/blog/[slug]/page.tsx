@@ -5,9 +5,7 @@ import SupportArticle from "@/components/support-article";
 import SupportToc from "@/components/support-toc";
 import ContactWidget from "@/components/contact";
 
-type Params = { params: { slug: string } };
-
-export default function BlogPostPage({ params }: Params) {
+export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const post = BLOG_POSTS.find((p) => p.slug === params.slug);
   if (!post) return notFound();
 
