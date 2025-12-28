@@ -229,7 +229,7 @@ export default function BlogHomePage() {
                 </div>
               </DropdownMenuTrigger>
 
-              <DropdownMenuContent className="w-[40rem] p-0">
+              <DropdownMenuContent className="w-160 p-0">
                 <div className="p-3">
                   <DropdownMenuLabel className="text-sm font-medium">
                     Suggestions
