@@ -109,7 +109,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
   return (
     <aside className="w-full">
       <div className="sticky top-28">
-        <div className="text-card-foreground rounded p-3 shadow-sm">
+        <div className="text-card-foreground rounded p-3">
           <div className="flex items-center gap-2 mb-3">
             <Menu className="size-4" />
             <span className="text-sm font-semibold">On this page</span>

@@ -5,6 +5,10 @@ import Script from "next/script";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import BannerGrid from "./components/BannerGrid";
+import TopicGrid from "./components/TopicGrid";
+import IntroBanner from "./components/IntroBanner";
+import CTA from "./components/CTA";
 
 export default function BlogHomePage() {
   const [query, setQuery] = useState("");
@@ -270,188 +274,19 @@ export default function BlogHomePage() {
           </div>
         </header>
 
-        {/* Bento grid with 3 banners (shadcn Card) */}
-        <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <Card
-            className="lg:col-span-2 p-8 text-white overflow-hidden"
-            style={{ background: "linear-gradient(90deg,#0ea5e9,#3b82f6)" }}
-          >
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-2xl font-semibold">{banners[0].title}</h3>
-                <p className="mt-2 text-sm opacity-90">{banners[0].subtitle}</p>
-                <div className="mt-4 flex items-center">
-                  <Button
-                    onClick={(e) => e.preventDefault()}
-                    className="rounded-full bg-white text-blue-600 px-4 py-2 font-semibold mr-3"
-                  >
-                    Connect Wallet
-                  </Button>
+        {/* Bento grid (moved to component) */}
+        <BannerGrid banners={banners} />
 
-                  <Button
-                    onClick={(e) => e.preventDefault()}
-                    variant="outline"
-                    className="rounded-full border-white text-white px-4 py-2"
-                  >
-                    Learn more
-                  </Button>
-                </div>
-              </div>
+        <TopicGrid
+          title="Trending topics"
+          items={filteredTrending.slice(0, 6)}
+        />
 
-              <div className="hidden md:block">
-                <div className="w-40 h-40 rounded-full bg-white/20" />
-              </div>
-            </div>
-          </Card>
+        <TopicGrid title="Support topics" items={filteredSupport.slice(0, 6)} />
 
-          <Card className="p-6">
-            <h3 className="text-xl font-semibold">{banners[1].title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {banners[1].subtitle}
-            </p>
-            <div className="mt-4">
-              <Button
-                onClick={(e) => {
-                  e.preventDefault();
-                  openChat();
-                }}
-                className="rounded-full bg-primary text-white px-4 py-2 mr-2"
-              >
-                Ask our chatbot
-              </Button>
-              <Button
-                onClick={(e) => e.preventDefault()}
-                variant="outline"
-                className="rounded-full px-4 py-2"
-              >
-                Learn more
-              </Button>
-            </div>
-          </Card>
+        <IntroBanner />
 
-          <Card className="p-6">
-            <h3 className="text-xl font-semibold">{banners[2].title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {banners[2].subtitle}
-            </p>
-            <div className="mt-4">
-              <Button
-                onClick={(e) => e.preventDefault()}
-                className="rounded-full bg-primary text-white px-4 py-2 mr-2"
-              >
-                Learn more
-              </Button>
-            </div>
-          </Card>
-        </section>
-
-        {/* Trending topics (shadcn Card) */}
-        <section className="mb-8">
-          <div className="flex justify-between items-baseline">
-            <h2 className="text-2xl font-semibold">Trending topics</h2>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="text-sm text-primary"
-            >
-              View all
-            </a>
-          </div>
-
-          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {filteredTrending.slice(0, 6).map((t) => (
-              <Card key={t.id} className="p-4">
-                <div className="space-y-2">
-                  <h3 className="font-semibold">{t.title}</h3>
-                  <p className="text-sm text-muted-foreground">{t.excerpt}</p>
-                </div>
-                <div className="mt-4">
-                  <Button
-                    onClick={(e) => e.preventDefault()}
-                    variant="link"
-                    size="sm"
-                  >
-                    Read
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Support topics (shadcn Card) */}
-        <section className="mb-8">
-          <div className="flex justify-between items-baseline">
-            <h2 className="text-2xl font-semibold">Support topics</h2>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="text-sm text-primary"
-            >
-              View all
-            </a>
-          </div>
-
-          <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {filteredSupport.slice(0, 6).map((s) => (
-              <Card key={s.id} className="p-4">
-                <div className="space-y-2">
-                  <h3 className="font-semibold">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground">{s.excerpt}</p>
-                </div>
-                <div className="mt-4">
-                  <Button
-                    onClick={(e) => e.preventDefault()}
-                    variant="link"
-                    size="sm"
-                  >
-                    Read
-                  </Button>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* Introducing banner - shadcn Card */}
-        <section className="mb-6">
-          <Card className="p-6">
-            <div className="space-y-2">
-              <h2 className="text-3xl font-semibold">
-                Introducing AlphaWealth
-              </h2>
-              <p className="mt-2 text-lg opacity-90">
-                Smart tools and insights to help you trade with confidence.
-              </p>
-            </div>
-          </Card>
-        </section>
-
-        {/* CTA - shadcn Card + Button */}
-        <section className="mb-16 mt-4">
-          <Card
-            className="p-6 text-white"
-            style={{ background: "linear-gradient(90deg,#111827,#0ea5e9)" }}
-          >
-            <div className="flex items-center justify-between gap-6">
-              <div>
-                <p className="font-medium">Now what you are looking for?</p>
-              </div>
-
-              <div>
-                <Button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    openChat();
-                  }}
-                  className="rounded-full px-6 py-3"
-                >
-                  Ask our chatbot
-                </Button>
-              </div>
-            </div>
-          </Card>
-        </section>
+        <CTA />
       </div>
 
       {/* Tawk.to script (will be loaded but chat open attempts will fallback if API missing) */}
