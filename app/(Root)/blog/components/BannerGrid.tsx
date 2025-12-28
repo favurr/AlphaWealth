@@ -62,7 +62,7 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
         </div>
       </Card>
 
-      <Card className="p-6 dark:text-muted">
+      <Card className="p-6 dark:text-muted py-20">
         <div>
           <h3 className="text-2xl text-muted-foreground font-semibold">
             {banners[1].title}
