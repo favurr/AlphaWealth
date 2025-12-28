@@ -3,6 +3,56 @@ import ContactWidget from "@/components/contact-widget";
 import SupportToc from "@/components/support-toc";
 import { Gemini, MagicUI, Replit } from "@/components/logos";
 
+const SUPPORT_TOC = [
+  { id: "getting-started", title: "Getting started" },
+  {
+    id: "account-verification",
+    title: "Account & verification",
+    children: [
+      { id: "creating-account", title: "Creating an account" },
+      { id: "verification-process", title: "Verification process" },
+      { id: "lost-access", title: "Lost access or locked accounts" },
+    ],
+  },
+  {
+    id: "buying-and-deposits",
+    title: "Buying & deposits",
+    children: [
+      { id: "deposit-funds", title: "How to deposit funds" },
+      { id: "payment-failures", title: "Payment failures" },
+      { id: "region-specifics", title: "Region specifics" },
+    ],
+  },
+  { id: "withdrawals-and-transfers", title: "Withdrawals & transfers" },
+  {
+    id: "payments-fees-limits",
+    title: "Payments, fees & limits",
+    children: [
+      { id: "fee-types", title: "Fee types" },
+      { id: "limits", title: "Limits & verification" },
+    ],
+  },
+  {
+    id: "security",
+    title: "Security",
+    children: [
+      { id: "two-factor", title: "Two-factor authentication" },
+      { id: "suspicious-activity", title: "Suspicious activity" },
+    ],
+  },
+  { id: "kyc-and-compliance", title: "KYC & compliance" },
+  {
+    id: "troubleshooting",
+    title: "Troubleshooting",
+    children: [
+      { id: "tx-not-arrived", title: "Transaction hasn't arrived" },
+      { id: "app-errors", title: "App or interface errors" },
+    ],
+  },
+  { id: "integrations-api", title: "Integrations & API" },
+  { id: "contact-reporting", title: "Contact & reporting" },
+];
+
 export default function SupportPage() {
   return (
     <main className="py-24">
@@ -202,19 +252,19 @@ export default function SupportPage() {
             </section>
           </article>
         </div>
-      </div>
 
-      {/* Middle: TOC column (aligned left next to content) */}
-      <div className="hidden lg:block lg:col-start-2">
-        <div className="sticky top-28">
-          <SupportToc />
+        {/* Middle: TOC column (aligned left next to content) */}
+        <div className="hidden lg:block lg:col-start-2">
+          <div className="sticky top-28">
+            <SupportToc items={SUPPORT_TOC} />
+          </div>
         </div>
-      </div>
 
-      {/* Right: Contact column */}
-      <div className="hidden lg:block lg:col-start-3">
-        <div className="sticky top-28 max-h-[calc(100vh-112px)] overflow-auto">
-          <ContactWidget />
+        {/* Right: Contact column */}
+        <div className="hidden lg:block lg:col-start-3">
+          <div className="sticky top-28 max-h-[calc(100vh-112px)] overflow-auto">
+            <ContactWidget />
+          </div>
         </div>
       </div>
 
