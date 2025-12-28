@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Script from "next/script";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function BlogHomePage() {
   const [query, setQuery] = useState("");
@@ -199,7 +200,7 @@ export default function BlogHomePage() {
   }
 
   return (
-    <main className="py-18">
+    <main className="py-18 mt-4">
       <div className="mx-auto max-w-7xl px-6">
         <header className="max-w-4xl mb-10">
           <h1 className="text-4xl font-semibold mb-4">How can we help you</h1>
@@ -260,70 +261,91 @@ export default function BlogHomePage() {
               )}
             </div>
 
-            <button
+            <Button
               className="rounded-full bg-primary px-4 py-2 text-white font-medium"
               onClick={(e) => e.preventDefault()}
             >
               Search
-            </button>
+            </Button>
           </div>
         </header>
 
-        {/* Bento grid with 3 banners */}
+        {/* Bento grid with 3 banners (shadcn Card) */}
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-          <div
-            className="lg:col-span-2 rounded-2xl p-8 text-white flex items-center justify-between"
+          <Card
+            className="lg:col-span-2 p-8 text-white overflow-hidden"
             style={{ background: "linear-gradient(90deg,#0ea5e9,#3b82f6)" }}
           >
-            <div>
-              <h3 className="text-2xl font-semibold">{banners[0].title}</h3>
-              <p className="mt-2 text-sm opacity-90">{banners[0].subtitle}</p>
-              <div className="mt-4">
-                <button
-                  className="rounded-full bg-white text-blue-600 px-4 py-2 font-semibold mr-3"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Connect Wallet
-                </button>
-                <button
-                  className="rounded-full border border-white text-white px-4 py-2"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  Learn more
-                </button>
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="text-2xl font-semibold">{banners[0].title}</h3>
+                <p className="mt-2 text-sm opacity-90">{banners[0].subtitle}</p>
+                <div className="mt-4 flex items-center">
+                  <Button
+                    onClick={(e) => e.preventDefault()}
+                    className="rounded-full bg-white text-blue-600 px-4 py-2 font-semibold mr-3"
+                  >
+                    Connect Wallet
+                  </Button>
+
+                  <Button
+                    onClick={(e) => e.preventDefault()}
+                    variant="outline"
+                    className="rounded-full border-white text-white px-4 py-2"
+                  >
+                    Learn more
+                  </Button>
+                </div>
+              </div>
+
+              <div className="hidden md:block">
+                <div className="w-40 h-40 rounded-full bg-white/20" />
               </div>
             </div>
-            <div className="hidden md:block">
-              <div className="w-40 h-40 rounded-full bg-white/20" />
-            </div>
-          </div>
+          </Card>
 
-          <div className="rounded-2xl p-6 bg-white border shadow-sm">
+          <Card className="p-6">
             <h3 className="text-xl font-semibold">{banners[1].title}</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               {banners[1].subtitle}
             </p>
             <div className="mt-4">
-              <button
-                className="rounded-full bg-primary text-white px-4 py-2 mr-2"
+              <Button
                 onClick={(e) => {
                   e.preventDefault();
                   openChat();
                 }}
+                className="rounded-full bg-primary text-white px-4 py-2 mr-2"
               >
                 Ask our chatbot
-              </button>
-              <button
-                className="rounded-full border px-4 py-2"
+              </Button>
+              <Button
                 onClick={(e) => e.preventDefault()}
+                variant="outline"
+                className="rounded-full px-4 py-2"
               >
                 Learn more
-              </button>
+              </Button>
             </div>
-          </div>
+          </Card>
+
+          <Card className="p-6">
+            <h3 className="text-xl font-semibold">{banners[2].title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {banners[2].subtitle}
+            </p>
+            <div className="mt-4">
+              <Button
+                onClick={(e) => e.preventDefault()}
+                className="rounded-full bg-primary text-white px-4 py-2 mr-2"
+              >
+                Learn more
+              </Button>
+            </div>
+          </Card>
         </section>
 
-        {/* Trending topics */}
+        {/* Trending topics (shadcn Card) */}
         <section className="mb-8">
           <div className="flex justify-between items-baseline">
             <h2 className="text-2xl font-semibold">Trending topics</h2>
@@ -338,29 +360,26 @@ export default function BlogHomePage() {
 
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {filteredTrending.slice(0, 6).map((t) => (
-              <article
-                key={t.id}
-                className="rounded-lg border p-4 bg-card shadow-sm"
-              >
-                <h3 className="font-semibold">{t.title}</h3>
-                <p className="text-sm text-muted-foreground mt-2">
-                  {t.excerpt}
-                </p>
+              <Card key={t.id} className="p-4">
+                <div className="space-y-2">
+                  <h3 className="font-semibold">{t.title}</h3>
+                  <p className="text-sm text-muted-foreground">{t.excerpt}</p>
+                </div>
                 <div className="mt-4">
-                  <a
-                    href="#"
+                  <Button
                     onClick={(e) => e.preventDefault()}
-                    className="text-sm text-primary"
+                    variant="link"
+                    size="sm"
                   >
                     Read
-                  </a>
+                  </Button>
                 </div>
-              </article>
+              </Card>
             ))}
           </div>
         </section>
 
-        {/* Support topics */}
+        {/* Support topics (shadcn Card) */}
         <section className="mb-8">
           <div className="flex justify-between items-baseline">
             <h2 className="text-2xl font-semibold">Support topics</h2>
@@ -375,55 +394,63 @@ export default function BlogHomePage() {
 
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
             {filteredSupport.slice(0, 6).map((s) => (
-              <article
-                key={s.id}
-                className="rounded-lg border p-4 bg-card shadow-sm"
-              >
-                <h3 className="font-semibold">{s.title}</h3>
-                <p className="text-sm text-muted-foreground mt-2">
-                  {s.excerpt}
-                </p>
+              <Card key={s.id} className="p-4">
+                <div className="space-y-2">
+                  <h3 className="font-semibold">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground">{s.excerpt}</p>
+                </div>
                 <div className="mt-4">
-                  <a
-                    href="#"
+                  <Button
                     onClick={(e) => e.preventDefault()}
-                    className="text-sm text-primary"
+                    variant="link"
+                    size="sm"
                   >
                     Read
-                  </a>
+                  </Button>
                 </div>
-              </article>
+              </Card>
             ))}
           </div>
         </section>
 
-        {/* Introducing banner */}
+        {/* Introducing banner - shadcn Card */}
         <section className="mb-6">
-          <Card>
-            <h2 className="text-3xl font-semibold">Introducing AlphaWealth</h2>
-            <p className="mt-2 text-lg opacity-90">
-              Smart tools and insights to help you trade with confidence.
-            </p>
+          <Card className="p-6">
+            <div className="space-y-2">
+              <h2 className="text-3xl font-semibold">
+                Introducing AlphaWealth
+              </h2>
+              <p className="mt-2 text-lg opacity-90">
+                Smart tools and insights to help you trade with confidence.
+              </p>
+            </div>
           </Card>
         </section>
 
-        {/* CTA */}
-        <section className="mb-16 mt-4 flex items-center justify-between gap-6">
-          <div
-            className="rounded-2xl p-10 text-white"
+        {/* CTA - shadcn Card + Button */}
+        <section className="mb-16 mt-4">
+          <Card
+            className="p-6 text-white"
             style={{ background: "linear-gradient(90deg,#111827,#0ea5e9)" }}
           >
-            <p className="font-medium">Now what you are looking for?</p>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                openChat();
-              }}
-              className="rounded-full bg-primary px-6 py-3 text-white font-semibold"
-            >
-              Ask our chatbot
-            </button>
-          </div>
+            <div className="flex items-center justify-between gap-6">
+              <div>
+                <p className="font-medium">Now what you are looking for?</p>
+              </div>
+
+              <div>
+                <Button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openChat();
+                  }}
+                  className="rounded-full px-6 py-3"
+                >
+                  Ask our chatbot
+                </Button>
+              </div>
+            </div>
+          </Card>
         </section>
       </div>
 
