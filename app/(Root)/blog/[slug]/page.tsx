@@ -20,18 +20,6 @@ export default function BlogPostPage() {
               <SupportToc />
             </div>
           </div>
-
-          {/* Right: Contact */}
-          <div className="hidden lg:block lg:col-start-3">
-            <div className="sticky top-28 max-h-[calc(100vh-112px)] overflow-auto">
-              <ContactWidget />
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile contact below article */}
-        <div className="lg:hidden mx-auto max-w-3xl px-6 mt-8">
-          <ContactWidget />
         </div>
       </main>
     );
