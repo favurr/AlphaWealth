@@ -4,13 +4,6 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Script from "next/script";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export default function BlogHomePage() {
   const [query, setQuery] = useState("");
@@ -211,59 +204,61 @@ export default function BlogHomePage() {
         <header className="max-w-4xl mb-10">
           <h1 className="text-4xl font-semibold mb-4">How can we help you</h1>
           <div className="relative flex items-center gap-4">
-            <DropdownMenu open={open} onOpenChange={setOpen}>
-              <DropdownMenuTrigger asChild>
-                <div className="flex gap-3 w-full items-center">
-                  <Input
-                    aria-label="Search articles"
-                    ref={inputRef}
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    onKeyDown={onKeyDown}
-                    placeholder="Search our FAQs"
-                    className="rounded-full px-6 py-3 shadow-sm placeholder:text-muted-foreground"
-                    onFocus={() =>
-                      setOpen(query.trim().length > 0 && suggestions.length > 0)
-                    }
-                  />
-                </div>
-              </DropdownMenuTrigger>
+            <div className="w-full">
+              <Input
+                aria-label="Search articles"
+                ref={inputRef}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                onKeyDown={onKeyDown}
+                placeholder="Search our FAQs"
+                className="rounded-full px-6 py-3 shadow-sm placeholder:text-muted-foreground"
+                onFocus={() =>
+                  setOpen(query.trim().length > 0 && suggestions.length > 0)
+                }
+              />
 
-              <DropdownMenuContent className="w-160 p-0">
-                <div className="p-3">
-                  <DropdownMenuLabel className="text-sm font-medium">
+              {open && (
+                <div
+                  role="listbox"
+                  aria-label="Search suggestions"
+                  className="absolute left-0 right-0 mt-2 z-50 w-full rounded-md border bg-popover p-1 shadow-lg"
+                >
+                  <div className="px-3 py-2 text-sm font-medium">
                     Suggestions
-                  </DropdownMenuLabel>
-                </div>
-
-                {suggestions.slice(0, 6).map((s, idx) => (
-                  <DropdownMenuItem
-                    key={s.id}
-                    onSelect={(e) => {
-                      e.preventDefault();
-                      selectSuggestion(s);
-                    }}
-                    className={`flex flex-col gap-0.5 px-4 py-3 ${
-                      idx === activeIndex ? "bg-muted/10" : ""
-                    }`}
-                    onMouseEnter={() => setActiveIndex(idx)}
-                  >
-                    <span className="text-sm font-medium">
-                      {highlight(s.title, query)}
-                    </span>
-                    <span className="text-xs text-muted-foreground">
-                      {highlight(s.excerpt, query)}
-                    </span>
-                  </DropdownMenuItem>
-                ))}
-
-                {suggestions.length === 0 && (
-                  <div className="px-4 py-3 text-sm text-muted-foreground">
-                    No matching articles
                   </div>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+
+                  {suggestions.slice(0, 6).map((s, idx) => (
+                    <button
+                      key={s.id}
+                      role="option"
+                      aria-selected={activeIndex === idx}
+                      onMouseDown={(e) =>
+                        e.preventDefault()
+                      } /* keep input focus */
+                      onClick={() => selectSuggestion(s)}
+                      onMouseEnter={() => setActiveIndex(idx)}
+                      className={`w-full text-left px-4 py-3 ${
+                        idx === activeIndex ? "bg-muted/10" : ""
+                      }`}
+                    >
+                      <div className="text-sm font-medium">
+                        {highlight(s.title, query)}
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        {highlight(s.excerpt, query)}
+                      </div>
+                    </button>
+                  ))}
+
+                  {suggestions.length === 0 && (
+                    <div className="px-4 py-3 text-sm text-muted-foreground">
+                      No matching articles
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
 
             <button
               className="rounded-full bg-primary px-4 py-2 text-white font-medium"
@@ -419,8 +414,6 @@ export default function BlogHomePage() {
             style={{ background: "linear-gradient(90deg,#111827,#0ea5e9)" }}
           >
             <p className="font-medium">Now what you are looking for?</p>
-          </div>
-          <div>
             <button
               onClick={(e) => {
                 e.preventDefault();
