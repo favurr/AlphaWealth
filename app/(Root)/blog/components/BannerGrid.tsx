@@ -62,9 +62,9 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
         </div>
       </Card>
 
-      <Card className="p-6 flex flex-col justify-center text-left gap-2 dark:text-black">
+      <Card className="p-6 flex flex-col justify-center text-left dark:text-black">
         <h3 className="text-xl font-semibold">{banners[1].title}</h3>
-        <p className="mt-2 text-sm text-muted-foreground dark:text-muted-foreground">
+        <p className="mt-2 text-sm text-muted-foreground">
           {banners[1].subtitle}
         </p>
         <div className="mt-4">
