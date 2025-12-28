@@ -62,28 +62,32 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
         </div>
       </Card>
 
-      <Card className="p-6 flex flex-col text-left dark:text-muted">
-        <h3 className="text-xl font-semibold">{banners[1].title}</h3>
-        <p className="mt-2 text-sm text-muted-foreground">
-          {banners[1].subtitle}
-        </p>
-        <div className="mt-4">
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              openChat();
-            }}
-            className="rounded-full bg-primary text-white px-4 py-2 mr-2"
-          >
-            Ask our chatbot
-          </Button>
-          <Button
-            onClick={(e) => e.preventDefault()}
-            variant="outline"
-            className="rounded-full px-4 py-2"
-          >
-            Learn more
-          </Button>
+      <Card className="p-6 dark:text-muted">
+        <div>
+          <h3 className="text-2xl text-muted-foreground font-semibold">
+            {banners[1].title}
+          </h3>
+          <p className="mt-2 text-sm text-muted-foreground opacity-90">
+            {banners[1].subtitle}
+          </p>
+          <div className="mt-4">
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                openChat();
+              }}
+              className="rounded-full bg-primary text-white px-4 py-2 mr-2"
+            >
+              Ask our chatbot
+            </Button>
+            <Button
+              onClick={(e) => e.preventDefault()}
+              variant="outline"
+              className="rounded-full px-4 py-2"
+            >
+              Learn more
+            </Button>
+          </div>
         </div>
       </Card>
     </section>
