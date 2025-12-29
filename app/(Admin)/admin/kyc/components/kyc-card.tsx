@@ -112,6 +112,8 @@ export default function KycCard({ user, onCheck }: KycCardProps) {
             <Image
               src={openImage}
               alt="KYC Image"
+              width={800}
+              height={600}
               className="w-full object-contain"
             />
           </DialogContent>

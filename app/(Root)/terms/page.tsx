@@ -136,7 +136,6 @@ export default function TermsOfServicePage() {
               <h2 className="font-bold mt-4">11. Contact Us</h2>
               <p>
                 If you have any questions about these Terms of Service, please{" "}
-                <span> </span>
                 <Link className="underline" href="/contact">
                   contact us.
                 </Link>

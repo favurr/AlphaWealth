@@ -3,13 +3,15 @@ import BLOG_POSTS, { type BlogPost } from "@/app/(Root)/blog/data";
 import sanitizeHtml from "@/lib/sanitizeHtml";
 
 interface BlogPostPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function BlogPostPage({ params }: BlogPostPageProps) {
-  const { slug } = params;
+export default async function BlogPostPage({
+  params,
+}: BlogPostPageProps) {
+  const { slug } = await params;
 
   const post = BLOG_POSTS.find((p: BlogPost) => p.slug === slug);
   if (!post) notFound();
@@ -24,7 +26,9 @@ export default function BlogPostPage({ params }: BlogPostPageProps) {
             {post.title}
           </h1>
 
-          <p className="mb-6 text-sm text-muted-foreground">{post.date}</p>
+          <p className="mb-6 text-sm text-muted-foreground">
+            {post.date}
+          </p>
 
           {post.content ? (
             <div

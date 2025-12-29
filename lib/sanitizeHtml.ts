@@ -1,4 +1,3 @@
-// lib/sanitizeHtml.ts
 import sanitize from "sanitize-html";
 
 export default function sanitizeHtml(dirty?: string): string {

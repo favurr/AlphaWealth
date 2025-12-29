@@ -28,7 +28,11 @@ export default function PasswordSection() {
       const res = await fetch("/api/security/change-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ currentPassword, newPassword, revokeSessions }),
+        body: JSON.stringify({
+          currentPassword,
+          newPassword,
+          revokeOtherSessions: revokeSessions,
+        }),
       });
 
       const data = await res.json();
@@ -42,8 +46,10 @@ export default function PasswordSection() {
       setNewPassword("");
       setConfirmPassword("");
       setRevokeSessions(false);
-    } catch (err: any) {
-      toast.error(err?.message || "Failed to update password.");
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error ? err.message : "Failed to update password.";
+      toast.error(message);
     } finally {
       setLoading(false);
     }

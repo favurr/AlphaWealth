@@ -33,7 +33,7 @@ export default function StatsSection() {
               </div>
             </div>
           </div>
-          <div className="relative mt-13 sm:pt-0">
+          <div className="relative mt-12 sm:pt-0">
             <blockquote className="border-l-4 pl-4">
               <p>
                 Using AlphaWealth feels like unlocking a new level of trading

@@ -233,7 +233,7 @@ export function WalletFeatures() {
                       Manage all your wallets in one place
                     </h2>
                     <p className="text-foreground">
-                      our ‘multi-wallet’ feature securely add, import, and
+                      Our 'multi-wallet' feature lets you securely add, import, and
                       manage all your wallets.
                     </p>
                   </div>
