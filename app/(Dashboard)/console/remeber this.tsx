@@ -9,5 +9,5 @@ const session = await auth.api.getSession({
 if (!session) redirect("/auth/login");
 if (!session.user) redirect("/auth/login");
 
-"Password"
-"PortalAccess777!";
+("Password");
+("PortalAccess777!");

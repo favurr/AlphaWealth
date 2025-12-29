@@ -150,7 +150,7 @@ export function WalletFeatures() {
             <Card className="relative col-span-full flex overflow-hidden rounded-4xl py-4 lg:col-span-2">
               <CardContent className="relative size-fit px-4 pt-4">
                 <h1 className="font-semibold text-3xl px-4">
-                  Earn rewards <br/> & build your <br/> portfolio
+                  Earn rewards <br /> & build your <br /> portfolio
                 </h1>
                 <p className="mt-8 px-4">
                   Earn rewards, all the way up to 70% APR via trusted providers.
@@ -168,7 +168,8 @@ export function WalletFeatures() {
                       Your wallet. Your keys. Your crypto
                     </h2>
                     <p className="text-foreground">
-                      Built-in private key encryption and a password-protected login
+                      Built-in private key encryption and a password-protected
+                      login
                     </p>
                   </div>
                 </div>
@@ -232,7 +233,8 @@ export function WalletFeatures() {
                       Manage all your wallets in one place
                     </h2>
                     <p className="text-foreground">
-                      our ‘multi-wallet’ feature securely add, import, and manage all your wallets.
+                      Our 'multi-wallet' feature lets you securely add, import, and
+                      manage all your wallets.
                     </p>
                   </div>
                 </div>
@@ -247,6 +249,8 @@ export function WalletFeatures() {
                           className="size-full rounded-full"
                           src="/Blockchains/btc.png"
                           alt=""
+                          width={28}
+                          height={28}
                         />
                       </div>
                     </div>
@@ -256,6 +260,8 @@ export function WalletFeatures() {
                           className="size-full rounded-full"
                           src="/Blockchains/bnb.png"
                           alt=""
+                          width={28}
+                          height={28}
                         />
                       </div>
                       <span className="block h-fit rounded border px-2 py-1 text-xs shadow-sm">
@@ -271,6 +277,8 @@ export function WalletFeatures() {
                           className="size-full rounded-full"
                           src="/Blockchains/eth.png"
                           alt=""
+                          width={28}
+                          height={28}
                         />
                       </div>
                     </div>

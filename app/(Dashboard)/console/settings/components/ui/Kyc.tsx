@@ -16,8 +16,18 @@ type KycPayload = {
   idBackImage?: string | null;
 };
 
-function SkeletonRow({ width = "full", height = 4 }: { width?: string; height?: number }) {
-  return <div className={`bg-gray-300 dark:bg-gray-700 animate-pulse rounded ${width} h-${height}`} />;
+function SkeletonRow({
+  width = "full",
+  height = 4,
+}: {
+  width?: string;
+  height?: number;
+}) {
+  return (
+    <div
+      className={`bg-gray-300 dark:bg-gray-700 animate-pulse rounded ${width} h-${height}`}
+    />
+  );
 }
 
 export default function Kyc() {
@@ -64,17 +74,19 @@ export default function Kyc() {
     setBackPreview(URL.createObjectURL(file));
   }, []);
 
-  const { getRootProps: getFrontProps, getInputProps: getFrontInput } = useDropzone({
-    onDrop: onDropFront,
-    accept: { "image/*": [] },
-    multiple: false,
-  });
+  const { getRootProps: getFrontProps, getInputProps: getFrontInput } =
+    useDropzone({
+      onDrop: onDropFront,
+      accept: { "image/*": [] },
+      multiple: false,
+    });
 
-  const { getRootProps: getBackProps, getInputProps: getBackInput } = useDropzone({
-    onDrop: onDropBack,
-    accept: { "image/*": [] },
-    multiple: false,
-  });
+  const { getRootProps: getBackProps, getInputProps: getBackInput } =
+    useDropzone({
+      onDrop: onDropBack,
+      accept: { "image/*": [] },
+      multiple: false,
+    });
 
   const uploadFile = async (file: File | null) => {
     if (!file) return null;
@@ -98,8 +110,8 @@ export default function Kyc() {
 
     setIsSaving(true);
     try {
-      const idFrontImage = await uploadFile(frontFile) ?? frontPreview;
-      const idBackImage = await uploadFile(backFile) ?? backPreview;
+      const idFrontImage = (await uploadFile(frontFile)) ?? frontPreview;
+      const idBackImage = (await uploadFile(backFile)) ?? backPreview;
 
       const res = await fetch("/api/kyc/update", {
         method: "PATCH",
@@ -130,7 +142,8 @@ export default function Kyc() {
     );
   }
 
-  if (!data) return <p className="text-sm text-muted-foreground">Failed to load KYC.</p>;
+  if (!data)
+    return <p className="text-sm text-muted-foreground">Failed to load KYC.</p>;
 
   return (
     <div className="max-w-xl space-y-6">
@@ -192,7 +205,11 @@ export default function Kyc() {
             >
               <input {...getFrontInput()} />
               {frontPreview ? (
-                <Image src={frontPreview} alt="Front ID" className="w-full h-full object-cover" />
+                <Image
+                  src={frontPreview}
+                  alt="Front ID"
+                  className="w-full h-full object-cover"
+                />
               ) : (
                 <p className="text-xs text-gray-500">Upload</p>
               )}
@@ -208,7 +225,11 @@ export default function Kyc() {
             >
               <input {...getBackInput()} />
               {backPreview ? (
-                <Image src={backPreview} alt="Back ID" className="w-full h-full object-cover" />
+                <Image
+                  src={backPreview}
+                  alt="Back ID"
+                  className="w-full h-full object-cover"
+                />
               ) : (
                 <p className="text-xs text-gray-500">Upload</p>
               )}

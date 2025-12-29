@@ -9,9 +9,9 @@ export default function RootLayout({
     <main>
       {children}
       <Toaster
-      toastOptions={{
-        className: "mb-13"
-      }} 
+        toastOptions={{
+          className: "mb-13",
+        }}
       />
     </main>
   );

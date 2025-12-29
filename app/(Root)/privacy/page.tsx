@@ -179,7 +179,9 @@ export default function PrivacyPage() {
               <p>
                 If you have questions or concerns about this Privacy Policy or
                 our data practices, please <span> </span>
-                <Link className="underline" href="/contact">contact us.</Link>
+                <Link className="underline" href="/contact">
+                  contact us.
+                </Link>
               </p>
 
               <p className="mt-6">

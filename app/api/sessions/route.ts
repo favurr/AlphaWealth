@@ -25,9 +25,12 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(mapped);
   } catch (err) {
     console.error("Failed to fetch sessions:", err);
-    return NextResponse.json({ error: "Failed to fetch sessions" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch sessions" },
+      { status: 500 },
+    );
   }
-};
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -36,6 +39,9 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("Failed to revoke other sessions:", err);
-    return NextResponse.json({ error: "Failed to revoke other sessions" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to revoke other sessions" },
+      { status: 500 },
+    );
   }
 }

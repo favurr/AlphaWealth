@@ -3,9 +3,9 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
 
 export async function POST(req: Request) {
-    const session = await auth.api.getSession({
-      headers: req.headers,
-    });
+  const session = await auth.api.getSession({
+    headers: req.headers,
+  });
   if (!session?.user?.id) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
   if (!type || !details) {
     return NextResponse.json(
       { error: "Missing required fields" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

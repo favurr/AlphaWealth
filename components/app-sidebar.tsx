@@ -91,11 +91,10 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
 
-
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <SidebarMenuButton asChild >
+        <SidebarMenuButton asChild>
           <Link
             href="/"
             aria-label="home"

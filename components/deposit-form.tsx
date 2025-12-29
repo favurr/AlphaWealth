@@ -84,7 +84,7 @@ export default function DepositForm() {
   const [open, setOpen] = useState(false);
   const [manualOpen, setManualOpen] = useState(false);
   const [pendingValues, setPendingValues] = useState<DepositValues | null>(
-    null
+    null,
   );
   const [orderID, setOrderID] = useState<string>("");
 
@@ -122,23 +122,22 @@ export default function DepositForm() {
   };
 
   const handleConfirm = async () => {
-  if (!pendingValues) return;
+    if (!pendingValues) return;
 
-  try {
-    await createDepositHistory({
-      amount: pendingValues.amount,
-      currency: pendingValues.asset,
-    });
+    try {
+      await createDepositHistory({
+        amount: pendingValues.amount,
+        currency: pendingValues.asset,
+      });
 
-    setOpen(false);
-    setPendingValues(null);
-    form.reset();
-  } catch (error) {
-    console.error("Failed to create deposit history", error);
-    // optionally show toast
-  }
-};
-
+      setOpen(false);
+      setPendingValues(null);
+      form.reset();
+    } catch (error) {
+      console.error("Failed to create deposit history", error);
+      // optionally show toast
+    }
+  };
 
   return (
     <>
@@ -258,19 +257,20 @@ export default function DepositForm() {
 
               <div>
                 <p className="text-sm pb-2">
-                  Send Amount: <strong>
-                  {pendingValues?.amount} {pendingValues?.asset},{" "}
-                  {pendingValues?.asset &&
-                    prices[pendingValues.asset] !== undefined && (
-                      <>
-                        ($
-                        {(
-                          pendingValues.amount * prices[pendingValues.asset]
-                        ).toFixed(2)}
-                        )
-                      </>
-                    )}
-                </strong>
+                  Send Amount:{" "}
+                  <strong>
+                    {pendingValues?.amount} {pendingValues?.asset},{" "}
+                    {pendingValues?.asset &&
+                      prices[pendingValues.asset] !== undefined && (
+                        <>
+                          ($
+                          {(
+                            pendingValues.amount * prices[pendingValues.asset]
+                          ).toFixed(2)}
+                          )
+                        </>
+                      )}
+                  </strong>
                 </p>
                 <CopyableInput value={ASSET_INFO[pendingValues.asset].text} />
               </div>

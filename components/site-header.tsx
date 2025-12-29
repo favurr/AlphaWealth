@@ -1,10 +1,7 @@
 "use client";
 
 import { Separator } from "@/components/ui/separator";
-import {
-  SidebarTrigger,
-  useSidebar,
-} from "@/components/ui/sidebar";
+import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { ModeToggle } from "./theme-switcher";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 

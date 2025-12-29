@@ -37,10 +37,10 @@ export default function EditUserDialog({ user, onSave, onDelete }: Props) {
   const [bonus, setBonus] = useState(user.bonus);
   const [profit, setProfit] = useState(user.profit);
   const [tradeStatus, setTradeStatus] = useState<EditableUser["tradeStatus"]>(
-    user.tradeStatus
+    user.tradeStatus,
   );
   const [cryptoPlan, setCryptoPlan] = useState<EditableUser["cryptoPlan"]>(
-    user.cryptoPlan
+    user.cryptoPlan,
   );
 
   const handleSave = () => {

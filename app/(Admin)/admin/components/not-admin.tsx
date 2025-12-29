@@ -63,7 +63,9 @@ export default function NotAdmin() {
             animate={{ rotate: -360 }}
             transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
           />
-          <motion.div className="absolute flex justify-center text-5xl items-center inset-8 rounded-full opacity-20 animate-caret-blink font-bold" >!</motion.div>
+          <motion.div className="absolute flex justify-center text-5xl items-center inset-8 rounded-full opacity-20 animate-caret-blink font-bold">
+            !
+          </motion.div>
         </div>
 
         <h1 className="text-2xl font-semibold tracking-tight text-red-500">

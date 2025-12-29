@@ -52,7 +52,7 @@ export const auth = betterAuth({
   session: {
     expiresIn: 30 * 24 * 60 * 60, // 30 days
   },
-  plugins: [nextCookies(),],
+  plugins: [nextCookies()],
   trustedOrigins: [String(process.env.NEXT_PUBLIC_BASE_URL)],
 });
 

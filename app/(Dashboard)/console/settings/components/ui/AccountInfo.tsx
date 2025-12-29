@@ -13,8 +13,18 @@ type AccountPayload = {
   country: string;
 };
 
-function SkeletonRow({ width = "full", height = 4 }: { width?: string; height?: number }) {
-  return <div className={`bg-gray-300 dark:bg-gray-700 animate-pulse rounded ${width} h-${height}`} />;
+function SkeletonRow({
+  width = "full",
+  height = 4,
+}: {
+  width?: string;
+  height?: number;
+}) {
+  return (
+    <div
+      className={`bg-gray-300 dark:bg-gray-700 animate-pulse rounded w-${width} h-${height}`}
+    />
+  );
 }
 
 export default function AccountInfo() {
@@ -109,7 +119,9 @@ export default function AccountInfo() {
       <div className="max-w-xl space-y-6">
         <div>
           <h2 className="text-lg font-semibold">Account Information</h2>
-          <p className="text-sm text-muted-foreground">Update your personal details.</p>
+          <p className="text-sm text-muted-foreground">
+            Update your personal details.
+          </p>
         </div>
 
         {/* Avatar skeleton */}
@@ -140,14 +152,18 @@ export default function AccountInfo() {
   }
 
   if (!data) {
-    return <p className="text-sm text-muted-foreground">Failed to load data.</p>;
+    return (
+      <p className="text-sm text-muted-foreground">Failed to load data.</p>
+    );
   }
 
   return (
     <div className="max-w-xl space-y-6">
       <div>
         <h2 className="text-lg font-semibold">Account Information</h2>
-        <p className="text-sm text-muted-foreground">Update your personal details.</p>
+        <p className="text-sm text-muted-foreground">
+          Update your personal details.
+        </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -160,7 +176,11 @@ export default function AccountInfo() {
           >
             <input {...getInputProps()} />
             {avatarPreview ? (
-              <Image src={avatarPreview} alt="Avatar Preview" className="w-full h-full object-cover" />
+              <Image
+                src={avatarPreview}
+                alt="Avatar Preview"
+                className="w-full h-full object-cover"
+              />
             ) : isDragActive ? (
               <p className="text-xs text-gray-500">Drop here</p>
             ) : (

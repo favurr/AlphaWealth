@@ -1,4 +1,3 @@
-
 import UserGrowthChart from "./components/charts/user-growth-chart";
 import TransactionsChart from "./components/charts/transactions-chart";
 import RevenueChart from "./components/charts/revenue-chart";

@@ -70,7 +70,9 @@ const NewTradeForm = () => {
                       <SelectItem {...field} value="demo">
                         Demo Account ($100,000.00)
                       </SelectItem>
-                      <SelectItem {...field} value="real">Real Account ($0.00)</SelectItem>
+                      <SelectItem {...field} value="real">
+                        Real Account ($0.00)
+                      </SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>

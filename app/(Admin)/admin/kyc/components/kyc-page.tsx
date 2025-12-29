@@ -34,7 +34,7 @@ export default function KycPage() {
 
       if (node) observer.current.observe(node);
     },
-    [loading, hasMore]
+    [loading, hasMore],
   );
 
   const loadUsers = async () => {

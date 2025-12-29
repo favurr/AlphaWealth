@@ -1,8 +1,19 @@
 "use client";
 
 import { useState, useEffect, useTransition } from "react";
-import { getUsers, deleteUser, type UpdateUserInput } from "../actions/user-actions";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  getUsers,
+  deleteUser,
+  type UpdateUserInput,
+} from "../actions/user-actions";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import EditUserDialog from "./edit-user-dialog";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
@@ -46,11 +57,12 @@ export default function UsersTable() {
 
   const handleSave = (updatedUser: UpdateUserInput) => {
     setUsers((prev) =>
-      prev.map((u) => (u.id === updatedUser.id ? { ...u, ...updatedUser } : u))
+      prev.map((u) => (u.id === updatedUser.id ? { ...u, ...updatedUser } : u)),
     );
   };
 
-  if (!users.length) return <div className="text-center py-20">No users found</div>;
+  if (!users.length)
+    return <div className="text-center py-20">No users found</div>;
 
   return (
     <Card>
@@ -78,10 +90,18 @@ export default function UsersTable() {
             <TableBody>
               {users.map((user) => (
                 <TableRow key={user.id}>
-                  <TableCell className="max-w-[120px] truncate">{user.id}</TableCell>
-                  <TableCell className="max-w-[120px] truncate">{user.name}</TableCell>
-                  <TableCell className="max-w-[180px] truncate">{user.email}</TableCell>
-                  <TableCell>$ {user.accumulativeBalance.toLocaleString()}</TableCell>
+                  <TableCell className="max-w-[120px] truncate">
+                    {user.id}
+                  </TableCell>
+                  <TableCell className="max-w-[120px] truncate">
+                    {user.name}
+                  </TableCell>
+                  <TableCell className="max-w-[180px] truncate">
+                    {user.email}
+                  </TableCell>
+                  <TableCell>
+                    $ {user.accumulativeBalance.toLocaleString()}
+                  </TableCell>
                   <TableCell>$ {user.capital.toLocaleString()}</TableCell>
                   <TableCell>$ {user.bonus.toLocaleString()}</TableCell>
                   <TableCell>$ {user.profit.toLocaleString()}</TableCell>

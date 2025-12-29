@@ -3,9 +3,9 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 
 export async function PATCH(req: Request) {
-    const session = await auth.api.getSession({
-      headers: req.headers,
-    });
+  const session = await auth.api.getSession({
+    headers: req.headers,
+  });
   if (!session?.user?.id)
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
 
@@ -50,6 +50,9 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ success: true, kyc });
   } catch (err) {
     console.error(err);
-    return NextResponse.json({ message: "Failed to update KYC" }, { status: 500 });
+    return NextResponse.json(
+      { message: "Failed to update KYC" },
+      { status: 500 },
+    );
   }
 }

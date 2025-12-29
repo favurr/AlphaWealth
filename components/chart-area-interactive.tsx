@@ -48,7 +48,7 @@ export function ChartAreaInteractive() {
       compareSymbols: [],
       studies: [],
       autosize: true,
-      height: "410"
+      height: "410",
     });
     if (containerRef.current) {
       containerRef.current.appendChild(script);

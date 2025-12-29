@@ -1,19 +1,8 @@
 "use client";
 
-import {
-  LineChart,
-  Line,
-  XAxis,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const data = [
   { month: "Jan", users: 1120 },
@@ -42,12 +31,7 @@ export default function UserGrowthChart() {
           <LineChart data={data}>
             <XAxis dataKey="month" />
             <Tooltip />
-            <Line
-              type="monotone"
-              dataKey="users"
-              strokeWidth={2}
-              dot={false}
-            />
+            <Line type="monotone" dataKey="users" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </CardContent>

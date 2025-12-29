@@ -198,7 +198,7 @@ const IntegrationCard = ({
     <div
       className={cn(
         "relative z-30 flex size-12 rounded-full border bg-white shadow-sm shadow-black/5 dark:bg-white/5 dark:backdrop-blur-md",
-        className
+        className,
       )}
     >
       <div className={cn("m-auto size-fit *:size-5", isCenter && "*:size-8")}>

@@ -184,13 +184,19 @@ export default function NavUser() {
 
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link href="/console/dashboard" className="flex items-center gap-2">
+                <Link
+                  href="/console/dashboard"
+                  className="flex items-center gap-2"
+                >
                   <IconCreditCard />
                   Wallet
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem className="flex items-center justify-between">
-                <Link href="/console/profile" className="flex items-center gap-2">
+                <Link
+                  href="/console/profile"
+                  className="flex items-center gap-2"
+                >
                   <IconUserCircle />
                   View Profile
                 </Link>
@@ -201,7 +207,10 @@ export default function NavUser() {
                 )}
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href="/console/settings" className="flex items-center gap-2">
+                <Link
+                  href="/console/settings"
+                  className="flex items-center gap-2"
+                >
                   <Settings2 />
                   Settings
                 </Link>

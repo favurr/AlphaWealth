@@ -12,7 +12,7 @@ export default function TopicGrid({
   items: { id: string; title: string; excerpt: string }[];
 }) {
   return (
-    <section className="mb-8">
+    <section className="mb-8 md:mb-16">
       <div className="flex justify-between items-baseline">
         <h2 className="text-2xl font-semibold">{title}</h2>
         <a

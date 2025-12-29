@@ -15,9 +15,7 @@ export function useNotifications() {
     fetch("/notification.json")
       .then((res) => res.json())
       .then((data) => setNotifications(data))
-      .catch((err) =>
-        console.error("Failed to load notification.json:", err)
-      );
+      .catch((err) => console.error("Failed to load notification.json:", err));
   }, []);
 
   return notifications;

@@ -60,14 +60,16 @@ export default function AutoToast() {
               className="w-10 h-10 object-contain"
             />
             <div className="flex flex-col leading-tight">
-              <span className="font-semibold text-sm">{item.title || "Earning"}</span>
+              <span className="font-semibold text-sm">
+                {item.title || "Earning"}
+              </span>
               <span className="text-xs opacity-90 dark:opacity-80">
                 {item.message}
               </span>
             </div>
           </div>
         ),
-        { duration: toastDuration }
+        { duration: toastDuration },
       );
 
       // Prepare next index

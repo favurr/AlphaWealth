@@ -3,12 +3,7 @@
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-type Plan =
-  | "SILVER"
-  | "GOLD"
-  | "DIAMOND"
-  | "ELITE"
-  | "EXCLUSIVE";
+type Plan = "SILVER" | "GOLD" | "DIAMOND" | "ELITE" | "EXCLUSIVE";
 
 type PlanResponse = {
   cryptoPlan: Plan;
@@ -105,9 +100,7 @@ export default function Plan() {
             <div
               key={plan.key}
               className={`rounded border p-4 flex items-center justify-between ${
-                isActive
-                  ? "border-primary bg-primary/5"
-                  : "border-muted"
+                isActive ? "border-primary bg-primary/5" : "border-muted"
               }`}
             >
               <div>

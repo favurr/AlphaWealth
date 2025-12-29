@@ -18,7 +18,7 @@ import {
 
 type Item = { id: string; title: string; icon?: string };
 
-type TocItem = {
+export type TocItem = {
   id: string;
   title: string;
   children?: Array<{ id: string; title: string }>;
@@ -37,6 +37,10 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   contact: <Mail className="size-4 mr-2" />,
 };
 
+// NOTE: TOC items should be exported from article components so that each article
+// can provide an explicit, deterministic list of sections. When `items` is not
+// provided, the component will fall back to building the TOC from the DOM.
+
 export default function SupportToc({ items }: { items?: TocItem[] }) {
   const [toc, setToc] = useState<TocItem[]>(items || []);
   const [active, setActive] = useState<string | null>(null);
@@ -46,7 +50,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
     if (items && items.length) return;
 
     const headings = Array.from(
-      document.querySelectorAll("article h2, article h3")
+      document.querySelectorAll("article h2, article h3"),
     ) as HTMLElement[];
 
     const built: TocItem[] = [];
@@ -77,7 +81,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
         if (visible[0]) setActive(visible[0].target.id);
       },
-      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
 
     ids.forEach((id) => {
@@ -100,7 +104,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
         // delay so layout settles
         setTimeout(
           () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
-          50
+          50,
         );
       }
     }

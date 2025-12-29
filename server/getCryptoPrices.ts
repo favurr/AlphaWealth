@@ -1,7 +1,7 @@
 export async function getCryptoPrices() {
   const res = await fetch(
     "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,usd-coin&vs_currencies=usd",
-    { cache: "no-store" } // ensures fresh data
+    { cache: "no-store" }, // ensures fresh data
   );
 
   if (!res.ok) throw new Error("Failed to fetch crypto prices");
@@ -19,7 +19,7 @@ export async function getCryptoPrices() {
 export async function getDepositCryptoPrices() {
   const res = await fetch(
     "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tether,usd-coin&vs_currencies=usd",
-    { cache: "no-store" } // ensures fresh data
+    { cache: "no-store" }, // ensures fresh data
   );
 
   if (!res.ok) throw new Error("Failed to fetch crypto prices");

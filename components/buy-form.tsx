@@ -85,7 +85,7 @@ export default function BuyForm() {
   const [open, setOpen] = useState(false);
   const [manualOpen, setManualOpen] = useState(false);
   const [pendingValues, setPendingValues] = useState<DepositValues | null>(
-    null
+    null,
   );
   const [orderID, setOrderID] = useState<string>("");
 
