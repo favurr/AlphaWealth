@@ -2,7 +2,11 @@ import React from "react";
 import { notFound } from "next/navigation";
 import BLOG_POSTS, { type BlogPost } from "@/app/(Root)/blog/data";
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const { slug } = (await params) as { slug: string };
   const post = BLOG_POSTS.find((p: BlogPost) => p.slug === slug);
   if (!post) return notFound();
