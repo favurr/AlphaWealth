@@ -1,9 +1,7 @@
 import { FaqsSection } from "@/components/faqs-section";
 
 const page = () => {
-  return (
-    <FaqsSection />
-)
-}
+  return <FaqsSection />;
+};
 
-export default page
+export default page;

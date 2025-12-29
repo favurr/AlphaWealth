@@ -3,7 +3,13 @@
 import { useState } from "react";
 import { Progress } from "@/components/ui/progress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
@@ -43,7 +49,7 @@ export default function KycCard({ user, onCheck }: KycCardProps) {
           "idBackImage",
         ].filter((f) => kyc[f as keyof typeof kyc]).length /
           7) *
-          100
+          100,
       )
     : 0;
 
@@ -56,7 +62,10 @@ export default function KycCard({ user, onCheck }: KycCardProps) {
     <Card className="p-4 flex flex-col gap-4 items-start relative">
       {/* Check KYC button */}
       <div className="absolute top-4 right-4">
-        <Button className="bg-primary text-white btn-sm cursor-pointer" onClick={onCheck}>
+        <Button
+          className="bg-primary text-white btn-sm cursor-pointer"
+          onClick={onCheck}
+        >
           Check KYC
         </Button>
       </div>
@@ -81,7 +90,9 @@ export default function KycCard({ user, onCheck }: KycCardProps) {
         <p className="text-sm text-muted-foreground">{user.email}</p>
 
         {/* KYC Status */}
-        <p className="text-xs mt-1">Status: {progress === 100 ? "Completed" : "Pending"}</p>
+        <p className="text-xs mt-1">
+          Status: {progress === 100 ? "Completed" : "Pending"}
+        </p>
 
         {/* Progress inline */}
         <div className="flex items-center gap-2 w-full">
@@ -96,9 +107,13 @@ export default function KycCard({ user, onCheck }: KycCardProps) {
           <DialogContent className="max-w-md p-0">
             <DialogHeader>
               <DialogTitle className="px-4 pt-4">Image Preview</DialogTitle>
-              <DialogClose className="btn btn-sm absolute right-2 top-2"/>
+              <DialogClose className="btn btn-sm absolute right-2 top-2" />
             </DialogHeader>
-            <Image src={openImage} alt="KYC Image" className="w-full object-contain" />
+            <Image
+              src={openImage}
+              alt="KYC Image"
+              className="w-full object-contain"
+            />
           </DialogContent>
         </Dialog>
       )}

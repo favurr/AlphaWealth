@@ -8,6 +8,9 @@ export async function GET() {
     return NextResponse.json({ user: session?.user ?? null });
   } catch (err: any) {
     console.error(err);
-    return NextResponse.json({ user: null, message: err?.message }, { status: 500 });
+    return NextResponse.json(
+      { user: null, message: err?.message },
+      { status: 500 },
+    );
   }
 }

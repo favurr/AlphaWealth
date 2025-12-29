@@ -63,9 +63,7 @@ export function NotFoundPage() {
             animate={{ rotate: -360 }}
             transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
           />
-          <motion.div
-            className="absolute flex justify-center text-5xl items-center inset-8 rounded-full opacity-20 animate-caret-blink font-bold"
-          >
+          <motion.div className="absolute flex justify-center text-5xl items-center inset-8 rounded-full opacity-20 animate-caret-blink font-bold">
             404
           </motion.div>
         </div>

@@ -5,9 +5,8 @@ export const TRANSACTION_TYPE_MAP = {
   PENDING: "PENDING",
 } as const;
 
-export type TransactionTypeFrontend =
-  keyof typeof TRANSACTION_TYPE_MAP;
+export type TransactionTypeFrontend = keyof typeof TRANSACTION_TYPE_MAP;
 
 export const TRANSACTION_TYPES = Object.values(
-  TRANSACTION_TYPE_MAP
+  TRANSACTION_TYPE_MAP,
 ) as TransactionTypeFrontend[];

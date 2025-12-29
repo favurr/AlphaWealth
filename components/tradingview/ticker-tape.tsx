@@ -32,7 +32,6 @@ function TickerTape() {
     }
   }, []);
 
-
   return (
     <div className="tradingview-widget-container" ref={containerRef}>
       <div className="tradingview-widget-container__widget"></div>
@@ -41,4 +40,3 @@ function TickerTape() {
 }
 
 export default memo(TickerTape);
-

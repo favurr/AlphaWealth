@@ -66,7 +66,7 @@ export function AdminLink() {
             transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
           />
           <motion.div className="absolute flex justify-center text-5xl items-center inset-8 rounded-full opacity-20 animate-caret-blink font-bold">
-						<ShieldUser size={40} strokeWidth={2.5} />
+            <ShieldUser size={40} strokeWidth={2.5} />
           </motion.div>
         </div>
 
@@ -75,7 +75,8 @@ export function AdminLink() {
         </h1>
 
         <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-          You are an <span className="font-bold">Admin</span>. Click below to access the admin panel.
+          You are an <span className="font-bold">Admin</span>. Click below to
+          access the admin panel.
         </p>
 
         <div className="mt-8 flex items-center justify-center gap-3">

@@ -23,11 +23,10 @@ const navItems = [
     icon: CreditCard,
   },
   {
-  title: "KYC",
-  href: "/admin/kyc",
-  icon: UserCheck, // assuming you import from lucide-react
-}
-
+    title: "KYC",
+    href: "/admin/kyc",
+    icon: UserCheck, // assuming you import from lucide-react
+  },
 ];
 
 export default function Sidebar() {
@@ -40,7 +39,7 @@ export default function Sidebar() {
       </div>
 
       <nav className="flex-1 space-y-1 p-3">
-        {navItems.map(item => {
+        {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = pathname === item.href;
 
@@ -50,9 +49,7 @@ export default function Sidebar() {
               href={item.href}
               className={cn(
                 "flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors",
-                isActive
-                  ? "bg-muted font-medium"
-                  : "hover:bg-muted"
+                isActive ? "bg-muted font-medium" : "hover:bg-muted",
               )}
             >
               <Icon className="h-4 w-4" />

@@ -50,7 +50,7 @@ const formSchema = z.object({
     TRANSACTION_TYPES as [
       TransactionTypeFrontend,
       ...TransactionTypeFrontend[],
-    ]
+    ],
   ),
 });
 
@@ -109,10 +109,7 @@ export default function TransactionForm() {
         </DialogHeader>
 
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-4"
-          >
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
             {/* User */}
             <FormField
               control={form.control}
@@ -129,9 +126,7 @@ export default function TransactionForm() {
                       <SelectTrigger className="w-full">
                         <SelectValue
                           placeholder={
-                            loadingUsers
-                              ? "Loading users..."
-                              : "Select user"
+                            loadingUsers ? "Loading users..." : "Select user"
                           }
                         />
                       </SelectTrigger>
@@ -161,9 +156,7 @@ export default function TransactionForm() {
                       type="number"
                       placeholder="Enter amount"
                       {...field}
-                      onChange={(e) =>
-                        field.onChange(Number(e.target.value))
-                      }
+                      onChange={(e) => field.onChange(Number(e.target.value))}
                     />
                   </FormControl>
                   <FormMessage />
@@ -178,10 +171,7 @@ export default function TransactionForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Currency</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select currency" />
@@ -207,10 +197,7 @@ export default function TransactionForm() {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Transaction Type</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    value={field.value}
-                  >
+                  <Select onValueChange={field.onChange} value={field.value}>
                     <FormControl>
                       <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select transaction type" />

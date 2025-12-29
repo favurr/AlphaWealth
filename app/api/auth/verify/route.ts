@@ -11,7 +11,7 @@ export async function GET(req: Request) {
 
   if (!loggedInUser) {
     return NextResponse.redirect(
-      new URL("/sign-in", process.env.NEXT_PUBLIC_BASE_URL)
+      new URL("/sign-in", process.env.NEXT_PUBLIC_BASE_URL),
     );
   }
 
@@ -28,6 +28,9 @@ export async function GET(req: Request) {
   });
 
   return NextResponse.redirect(
-    new URL("/console/dashboard?verified=true", process.env.NEXT_PUBLIC_BASE_URL)
+    new URL(
+      "/console/dashboard?verified=true",
+      process.env.NEXT_PUBLIC_BASE_URL,
+    ),
   );
 }

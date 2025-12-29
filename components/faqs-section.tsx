@@ -79,7 +79,7 @@ export function FaqsSection() {
             <span
               className={cn(
                 "p-1 text-muted-foreground text-sm hover:text-primary md:p-2 md:text-base",
-                activeCategory === cat.id && "text-primary"
+                activeCategory === cat.id && "text-primary",
               )}
             >
               {cat.label}
@@ -223,8 +223,7 @@ const faqs = [
     id: 12,
     category: "contracts",
     title: "Can I be refunded?",
-    content:
-      "As clearly stated, all orders are non-refundable.",
+    content: "As clearly stated, all orders are non-refundable.",
   },
   {
     id: 13,

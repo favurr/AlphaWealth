@@ -63,9 +63,7 @@ export default function UnderConstruction() {
             animate={{ rotate: -360 }}
             transition={{ repeat: Infinity, duration: 6, ease: "linear" }}
           />
-          <motion.div
-            className="absolute inset-8 rounded-full bg-white"
-          />
+          <motion.div className="absolute inset-8 rounded-full bg-white" />
         </div>
 
         <h1 className="text-2xl font-semibold tracking-tight">

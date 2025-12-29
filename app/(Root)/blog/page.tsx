@@ -122,17 +122,17 @@ export default function BlogHomePage() {
   const filteredTrending = useMemo(
     () =>
       trending.filter((t) =>
-        (t.title + " " + t.excerpt).toLowerCase().includes(query.toLowerCase())
+        (t.title + " " + t.excerpt).toLowerCase().includes(query.toLowerCase()),
       ),
-    [query]
+    [query],
   );
 
   const filteredSupport = useMemo(
     () =>
       supportTopics.filter((t) =>
-        (t.title + " " + t.excerpt).toLowerCase().includes(query.toLowerCase())
+        (t.title + " " + t.excerpt).toLowerCase().includes(query.toLowerCase()),
       ),
-    [query]
+    [query],
   );
 
   // Suggestions: combine lists and search only for suggestions (doesn't filter the page cards)
@@ -140,7 +140,7 @@ export default function BlogHomePage() {
     const q = query.trim().toLowerCase();
     if (!q) return [];
     return [...trending, ...supportTopics].filter((it) =>
-      (it.title + " " + it.excerpt).toLowerCase().includes(q)
+      (it.title + " " + it.excerpt).toLowerCase().includes(q),
     );
   }, [query]);
 
@@ -196,7 +196,7 @@ export default function BlogHomePage() {
         setActiveIndex(-1);
       }
     },
-    [open, activeIndex, suggestions, selectSuggestion]
+    [open, activeIndex, suggestions, selectSuggestion],
   );
 
   return (

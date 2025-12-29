@@ -4,8 +4,8 @@ import { prisma } from "@/lib/prisma";
 
 export async function PATCH(req: Request) {
   const session = await auth.api.getSession({
-      headers: req.headers,
-    });
+    headers: req.headers,
+  });
 
   if (!session?.user?.id) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
@@ -41,7 +41,7 @@ export async function PATCH(req: Request) {
   } catch (error) {
     return NextResponse.json(
       { message: "Failed to update account" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

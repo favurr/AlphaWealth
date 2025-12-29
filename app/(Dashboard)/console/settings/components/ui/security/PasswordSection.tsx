@@ -12,42 +12,42 @@ export default function PasswordSection() {
   const [loading, setLoading] = useState(false);
 
   const handleChangePassword = async () => {
-  if (!currentPassword || !newPassword || !confirmPassword) {
-    toast.error("Please fill in all fields.");
-    return;
-  }
-
-  if (newPassword !== confirmPassword) {
-    toast.error("New passwords do not match.");
-    return;
-  }
-
-  setLoading(true);
-
-  try {
-    const res = await fetch("/api/security/change-password", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ currentPassword, newPassword, revokeSessions }),
-    });
-
-    const data = await res.json();
-
-    if (!res.ok || !data.success) {
-      throw new Error(data.message || "Failed to update password");
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      toast.error("Please fill in all fields.");
+      return;
     }
 
-    toast.success("Password updated successfully.");
-    setCurrentPassword("");
-    setNewPassword("");
-    setConfirmPassword("");
-    setRevokeSessions(false);
-  } catch (err: any) {
-    toast.error(err?.message || "Failed to update password.");
-  } finally {
-    setLoading(false);
-  }
-};
+    if (newPassword !== confirmPassword) {
+      toast.error("New passwords do not match.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/security/change-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ currentPassword, newPassword, revokeSessions }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Failed to update password");
+      }
+
+      toast.success("Password updated successfully.");
+      setCurrentPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
+      setRevokeSessions(false);
+    } catch (err: any) {
+      toast.error(err?.message || "Failed to update password.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section className="space-y-4 rounded-lg border p-6">

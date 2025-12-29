@@ -7,7 +7,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
+} from "@/components/ui/table";
 import { prisma } from "@/lib/prisma";
 
 export async function AdminUsersTable() {
@@ -34,7 +34,7 @@ export async function AdminUsersTable() {
       <TableBody>
         {users.map((user) => (
           <TableRow key={user.id}>
-            <TableCell className="font-medium">{user.id.slice(0,8)}</TableCell>
+            <TableCell className="font-medium">{user.id.slice(0, 8)}</TableCell>
             <TableCell>{user.name}</TableCell>
             <TableCell>{user.email}</TableCell>
             <TableCell className="text-center">DELETE</TableCell>
@@ -42,5 +42,5 @@ export async function AdminUsersTable() {
         ))}
       </TableBody>
     </Table>
-  )
+  );
 }

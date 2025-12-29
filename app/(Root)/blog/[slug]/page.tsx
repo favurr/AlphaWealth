@@ -1,6 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import BLOG_POSTS, { type BlogPost } from "@/app/(Root)/blog/data";
+import sanitizeHtml from "@/lib/sanitizeHtml";
 
 export default async function BlogPostPage({
   params,
@@ -10,6 +11,8 @@ export default async function BlogPostPage({
   const { slug } = (await params) as { slug: string };
   const post = BLOG_POSTS.find((p: BlogPost) => p.slug === slug);
   if (!post) return notFound();
+
+  const safeContent = post.content ? sanitizeHtml(post.content) : "";
 
   return (
     <main className="py-24">
@@ -23,7 +26,7 @@ export default async function BlogPostPage({
           {post.content ? (
             <div
               className="prose dark:prose-invert"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+              dangerouslySetInnerHTML={{ __html: safeContent }}
             />
           ) : (
             <p>{post.excerpt}</p>

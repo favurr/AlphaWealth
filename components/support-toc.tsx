@@ -50,7 +50,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
     if (items && items.length) return;
 
     const headings = Array.from(
-      document.querySelectorAll("article h2, article h3")
+      document.querySelectorAll("article h2, article h3"),
     ) as HTMLElement[];
 
     const built: TocItem[] = [];
@@ -81,7 +81,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
         if (visible[0]) setActive(visible[0].target.id);
       },
-      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
 
     ids.forEach((id) => {
@@ -104,7 +104,7 @@ export default function SupportToc({ items }: { items?: TocItem[] }) {
         // delay so layout settles
         setTimeout(
           () => el.scrollIntoView({ behavior: "smooth", block: "start" }),
-          50
+          50,
         );
       }
     }

@@ -5,7 +5,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import SettingsContent from "./settings-content";
 
-
 /* -------------------------------------------------------------------------- */
 /*                               Tab Definitions                               */
 /* -------------------------------------------------------------------------- */
@@ -18,8 +17,7 @@ export const SETTINGS_TABS = {
   PLAN: "plan",
 } as const;
 
-export type SettingsTab =
-  (typeof SETTINGS_TABS)[keyof typeof SETTINGS_TABS];
+export type SettingsTab = (typeof SETTINGS_TABS)[keyof typeof SETTINGS_TABS];
 
 const TAB_LIST: { id: SettingsTab; label: string }[] = [
   { id: SETTINGS_TABS.ACCOUNT, label: "Account Info" },
@@ -57,7 +55,7 @@ export default function SettingsShell() {
               "border-b-2 border-transparent",
               activeTab === tab.id
                 ? "border-primary text-primary"
-                : "text-muted-foreground hover:text-foreground"
+                : "text-muted-foreground hover:text-foreground",
             )}
           >
             {tab.label}

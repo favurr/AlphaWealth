@@ -87,11 +87,9 @@ export default async function ProfilePage() {
           <div>
             <p className="text-muted-foreground">Auth providers</p>
             <div className="flex gap-2 mt-1">
-                <span
-                  className="px-2 py-1 rounded bg-muted text-xs"
-                >
-                  Email Created
-                </span>
+              <span className="px-2 py-1 rounded bg-muted text-xs">
+                Email Created
+              </span>
             </div>
           </div>
         </div>

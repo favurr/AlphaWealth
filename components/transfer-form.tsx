@@ -39,7 +39,7 @@ const transferSchema = z.object({
     .string()
     .length(
       USER_ID_SUFFIX_LENGTH,
-      `Must be exactly ${USER_ID_SUFFIX_LENGTH} characters`
+      `Must be exactly ${USER_ID_SUFFIX_LENGTH} characters`,
     ),
   amount: z.number().positive("Amount must be greater than zero"),
 });
@@ -57,8 +57,9 @@ type PinValues = z.infer<typeof pinSchema>;
 export default function TransferForm() {
   const [infoOpen, setInfoOpen] = useState(true);
   const [pinOpen, setPinOpen] = useState(false);
-  const [pendingTransfer, setPendingTransfer] =
-    useState<TransferValues | null>(null);
+  const [pendingTransfer, setPendingTransfer] = useState<TransferValues | null>(
+    null,
+  );
 
   const transferForm = useForm<TransferValues>({
     resolver: zodResolver(transferSchema),
@@ -159,9 +160,7 @@ export default function TransferForm() {
                     step="any"
                     placeholder="0.00"
                     {...field}
-                    onChange={(e) =>
-                      field.onChange(Number(e.target.value))
-                    }
+                    onChange={(e) => field.onChange(Number(e.target.value))}
                   />
                 </FormControl>
                 <FormMessage />

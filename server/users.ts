@@ -32,7 +32,7 @@ export const signInUser = async (email: string, password: string) => {
 export const signUpUser = async (
   email: string,
   password: string,
-  name: string
+  name: string,
 ) => {
   try {
     await auth.api.signUpEmail({

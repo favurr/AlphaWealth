@@ -1,9 +1,7 @@
-import { NotFoundPage } from '@/components/not-found'
+import { NotFoundPage } from "@/components/not-found";
 
 const NotFound = () => {
-  return (
-    <NotFoundPage />
-  )
-}
+  return <NotFoundPage />;
+};
 
-export default NotFound
+export default NotFound;

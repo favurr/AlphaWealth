@@ -21,8 +21,6 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-
-
 const formSchema = z.object({
   name: z.string().min(2),
   email: z.email(),
@@ -49,7 +47,7 @@ export default function SignupPage() {
       const response = await signUpUser(
         values.email,
         values.password,
-        values.name
+        values.name,
       );
       if (response?.success) {
         toast.success(response?.message);
