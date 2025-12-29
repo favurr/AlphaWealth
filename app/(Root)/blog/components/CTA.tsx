@@ -21,7 +21,7 @@ export default function CTA() {
   }
 
   return (
-    <section className="mb-16 mt-4">
+    <section className="mb-16 mt-24">
       <Card
         className="p-6 text-white"
         style={{ background: "linear-gradient(90deg,#111827,#0ea5e9)" }}

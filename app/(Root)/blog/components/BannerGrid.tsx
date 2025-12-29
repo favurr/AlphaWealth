@@ -29,7 +29,7 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
   }
 
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8 md:mb-16">
       <Card
         className="lg:col-span-2 p-8 text-white overflow-hidden"
         style={{ background: "linear-gradient(90deg,#0ea5e9,#3b82f6)" }}
@@ -62,7 +62,7 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
         </div>
       </Card>
 
-      <Card className="p-6 dark:text-muted">
+      <Card className="p-6 pt-12 dark:text-muted">
         <div>
           <h3 className="text-2xl text-muted-foreground font-semibold">
             {banners[1].title}
@@ -70,7 +70,7 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
           <p className="mt-2 text-sm text-muted-foreground opacity-90">
             {banners[1].subtitle}
           </p>
-          <div className="mt-8">
+          <div className="mt-4">
             <Button
               onClick={(e) => {
                 e.preventDefault();

@@ -18,7 +18,7 @@ import {
 
 type Item = { id: string; title: string; icon?: string };
 
-type TocItem = {
+export type TocItem = {
   id: string;
   title: string;
   children?: Array<{ id: string; title: string }>;
@@ -36,6 +36,10 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   integrations: <Code className="size-4 mr-2" />,
   contact: <Mail className="size-4 mr-2" />,
 };
+
+// NOTE: TOC items should be exported from article components so that each article
+// can provide an explicit, deterministic list of sections. When `items` is not
+// provided, the component will fall back to building the TOC from the DOM.
 
 export default function SupportToc({ items }: { items?: TocItem[] }) {
   const [toc, setToc] = useState<TocItem[]>(items || []);

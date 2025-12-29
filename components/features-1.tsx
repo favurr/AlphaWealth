@@ -271,6 +271,8 @@ export function WalletFeatures() {
                           className="size-full rounded-full"
                           src="/Blockchains/eth.png"
                           alt=""
+                          width={28}
+                          height={28}
                         />
                       </div>
                     </div>

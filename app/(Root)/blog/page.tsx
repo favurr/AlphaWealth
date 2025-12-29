@@ -1,14 +1,29 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import Script from "next/script";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import BannerGrid from "./components/BannerGrid";
 import TopicGrid from "./components/TopicGrid";
 import IntroBanner from "./components/IntroBanner";
 import CTA from "./components/CTA";
+
+type Banner = {
+  id: string;
+  title: string;
+  subtitle: string;
+  color?: string;
+  accent?: string;
+  border?: boolean;
+};
+type Topic = { id: string; title: string; excerpt: string };
 
 export default function BlogHomePage() {
   const [query, setQuery] = useState("");
@@ -21,7 +36,7 @@ export default function BlogHomePage() {
     setActiveIndex(-1);
   }, [query]);
 
-  const banners = [
+  const banners: Banner[] = [
     {
       id: "priority-support",
       title: "Get Priority Support",
@@ -38,7 +53,7 @@ export default function BlogHomePage() {
     },
   ];
 
-  const trending = [
+  const trending: Topic[] = [
     {
       id: "t1",
       title: "Market roundup: This week in crypto",
@@ -71,7 +86,7 @@ export default function BlogHomePage() {
     },
   ];
 
-  const supportTopics = [
+  const supportTopics: Topic[] = [
     {
       id: "s1",
       title: "Verify your account",
@@ -134,7 +149,7 @@ export default function BlogHomePage() {
     setActiveIndex(-1);
   }, [query, suggestions.length]);
 
-  function highlight(text: string, q: string) {
+  const highlight = useCallback((text: string, q: string) => {
     if (!q) return text;
     const lc = text.toLowerCase();
     const qi = lc.indexOf(q.toLowerCase());
@@ -149,59 +164,48 @@ export default function BlogHomePage() {
         {after}
       </>
     );
-  }
+  }, []);
 
-  function selectSuggestion(s: { id: string; title: string }) {
+  const selectSuggestion = useCallback((s: { id: string; title: string }) => {
     setQuery(s.title);
     setOpen(false);
     setActiveIndex(-1);
     inputRef.current?.blur();
-  }
+  }, []);
 
-  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (!open) {
-      if (e.key === "ArrowDown") setOpen(true);
-      return;
-    }
-
-    if (e.key === "ArrowDown") {
-      e.preventDefault();
-      setActiveIndex((i) => Math.min(i + 1, suggestions.length - 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setActiveIndex((i) => Math.max(i - 1, 0));
-    } else if (e.key === "Enter") {
-      e.preventDefault();
-      if (activeIndex >= 0 && suggestions[activeIndex]) {
-        selectSuggestion(suggestions[activeIndex]);
+  const onKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (!open) {
+        if (e.key === "ArrowDown") setOpen(true);
+        return;
       }
-    } else if (e.key === "Escape") {
-      setOpen(false);
-      setActiveIndex(-1);
-    }
-  }
 
-  function openChat() {
-    // Try to open Tawk widget if available, otherwise do nothing
-    try {
-      // @ts-ignore
-      if (typeof window !== "undefined" && (window as any).Tawk_API) {
-        // @ts-ignore
-        (window as any).Tawk_API.maximize &&
-          (window as any).Tawk_API.maximize();
-        // @ts-ignore
-        (window as any).Tawk_API.focus && (window as any).Tawk_API.focus();
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setActiveIndex((i) => Math.min(i + 1, suggestions.length - 1));
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setActiveIndex((i) => Math.max(i - 1, 0));
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        if (activeIndex >= 0 && suggestions[activeIndex]) {
+          selectSuggestion(suggestions[activeIndex]);
+        }
+      } else if (e.key === "Escape") {
+        setOpen(false);
+        setActiveIndex(-1);
       }
-    } catch (e) {
-      /* noop */
-    }
-  }
+    },
+    [open, activeIndex, suggestions, selectSuggestion]
+  );
 
   return (
-    <main className="pb-18 pt-28">
+    <main className="pb-18 pt-24 md:pt-26 lg:pt-32">
       <div className="mx-auto max-w-7xl px-6">
-        <header className="max-w-4xl mb-16">
-          <h1 className="text-4xl font-semibold mb-4">How can we help you</h1>
+        <header className="max-w-4xl mb-10 md:mb-16">
+          <h1 className="text-4xl md:text-5xl font-semibold mb-4">
+            How can we help you
+          </h1>
           <div className="relative flex items-center gap-4">
             <div className="w-full">
               <Input
