@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import BLOG_POSTS, { type BlogPost } from "@/app/(Root)/blog/data";
-import sanitizeHtml from "@/lib/sanitizeHtml";
+import StickyTOC from "../components/StickyTOC";
+import MDXRenderer from "../components/mdx/mdx-renderer";
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -16,25 +17,19 @@ export default async function BlogPostPage({
   const post = BLOG_POSTS.find((p: BlogPost) => p.slug === slug);
   if (!post) notFound();
 
-  const safeContent = post.content ? sanitizeHtml(post.content) : "";
-
   return (
-    <main className="py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <article className="prose mx-auto max-w-none sm:max-w-2xl md:max-w-3xl lg:max-w-4xl xl:max-w-5xl prose-a:underline prose-a:text-primary">
-          <h1 className="mb-2 text-2xl font-semibold leading-tight sm:text-3xl md:text-4xl">
-            {post.title}
-          </h1>
+    <main className="relative py-24">
+      {/* Right-aligned, desktop-only TOC */}
+      <StickyTOC containerId="article-content" />
 
-          <p className="mb-6 text-sm text-muted-foreground">
-            {post.date}
-          </p>
+      <div className="mx-auto max-w-4xl px-6">
+        <h1 className="mb-2 text-4xl font-semibold">{post.title}</h1>
+        <p className="mb-8 text-sm text-muted-foreground">{post.date}</p>
 
+        {/* THIS is what StickyTOC reads */}
+        <article id="article-content">
           {post.content ? (
-            <div
-              className="prose dark:prose-invert"
-              dangerouslySetInnerHTML={{ __html: safeContent }}
-            />
+            <MDXRenderer source={post.content} />
           ) : (
             <p>{post.excerpt}</p>
           )}

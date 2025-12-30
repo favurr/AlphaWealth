@@ -1,3 +1,5 @@
+import Callout from "./components/ui/Callout";
+
 export type BlogPost = {
   slug: string;
   title: string;
@@ -9,131 +11,219 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    slug: "welcome",
-    title: "Welcome to Modernize",
-    date: "2025-12-01",
-    excerpt: "An intro to the Modernize demo site and project goals.",
-    content: `
-      <p>Welcome to <strong>Modernize</strong> — a demo Next.js project showcasing modern patterns, components, and content-driven pages.</p>
-      <h2 id="what-is-modernize">What is Modernize?</h2>
-      <p>Modernize is an opinionated starter that demonstrates the App Router, shadcn/ui, Tailwind, and straightforward content patterns for blogs and support docs.</p>
-      <h3 id="getting-started">Getting started</h3>
-      <ul>
-        <li>Browse the blog index to see demos of article pages and search.</li>
-        <li>Open the support docs to view a long-form article with a generated table of contents.</li>
-        <li>Use the search box to try the lightweight autocomplete demo.</li>
-      </ul>
-      <p>Check out the code in the <a href="https://github.com/your-repo">repository</a> to learn how the pieces fit together.</p>
-    `,
-  },
-
-  {
-    slug: "announcing-features",
-    title: "Announcing New Features",
-    date: "2025-11-20",
-    excerpt: "A rundown of features released in the latest update.",
-    content: `
-      <p>We're excited to ship several improvements to the platform this month.</p>
-      <h2 id="performance">Performance improvements</h2>
-      <p>Page loads are faster and some common operations have been optimized to reduce server work.</p>
-      <h2 id="ui-enhancements">UI & accessibility</h2>
-      <p>We polished several screens and added keyboard-friendly interactions in the search and modal components.</p>
-      <h2 id="developer-experience">Developer experience</h2>
-      <ol>
-        <li>Improved TypeScript types across the app.</li>
-        <li>Refactored components into smaller, testable units.</li>
-        <li>Standardized layout primitives for consistent spacing.</li>
-      </ol>
-      <p>Thanks to the contributors and the community for the feedback.</p>
-    `,
-  },
-
-  {
-    slug: "security-best-practices",
-    title: "Security Best Practices",
-    date: "2025-10-10",
-    excerpt: "Practical tips to keep your account and funds safe.",
-    content: `
-      <p>Security is paramount — here are recommended steps for protecting accounts.</p>
-      <h2 id="use-2fa">Use two-factor authentication (2FA)</h2>
-      <p>Enable TOTP-based 2FA from the Security settings to add an extra layer of protection.</p>
-      <h2 id="phishing-awareness">Phishing and account safety</h2>
-      <ul>
-        <li>Never share your password or recovery codes.</li>
-        <li>Verify domain names and avoid clicking links from unknown senders.</li>
-        <li>Use a password manager to generate and store strong passwords.</li>
-      </ul>
-      <h2 id="suspicious-activity">Reporting suspicious activity</h2>
-      <p>Report any suspicious activity to our support team and include timestamps or transaction IDs when possible.</p>
-    `,
-  },
-
-  {
-    slug: "how-to-deposit",
-    title: "How to Deposit Funds",
-    date: "2025-09-03",
-    excerpt:
-      "Step-by-step guide to depositing crypto or fiat into your account.",
-    content: `
-      <p>Depositing funds is simple: choose asset, choose payment method, confirm.</p>
-      <h2 id="crypto-deposits">Crypto deposits</h2>
-      <p>Send tokens to the provided deposit address. Always double-check the network and the address before sending.</p>
-      <h2 id="bank-and-card">Bank transfers & cards</h2>
-      <p>Card and bank payments are supported via third-party providers — check estimated arrival times at checkout.</p>
-      <h2 id="expected-times">Expected arrival times</h2>
-      <ul>
-        <li>On-chain confirms: depends on network congestion.</li>
-        <li>Bank transfers: 1-3 business days (varies by region).</li>
-        <li>Card payments: usually instant but may be subject to provider checks.</li>
-      </ul>
-      <p>If your deposit does not arrive, provide the transaction ID to support for investigation.</p>
-    `,
-  },
-
-  {
     slug: "support",
     title: "Support & Help Center",
     date: "2025-12-15",
     excerpt:
-      "Comprehensive support article covering common questions and workflows.",
+      "Everything you need to know about using AlphaWealth — account setup, verification, deposits, withdrawals, security, and how to get help.",
     isSupport: true,
     content: `
-      <p>Welcome to the Support & Help Center — find practical help and contact options below.</p>
+  <p>
+    Welcome to the <strong>AlphaWealth Support & Help Center</strong>. This guide helps you navigate
+    the platform confidently — from account setup to security and contacting support.
+  </p>
 
-      <h2 id="getting-started">Getting started</h2>
-      <p>To get started, create an account, verify your email, and complete identity verification for higher limits.</p>
+  <Callout type="support">
+    If you’re new, start with <em>Getting Started</em>. Facing an issue?
+    Jump directly to the relevant section below.
+  </Callout>
 
-      <h2 id="account-verification">Account & verification</h2>
-      <h3 id="creating-account">Creating an account</h3>
-      <p>Create an account with your email and set a strong password. Enable 2FA for added security.</p>
+  <hr />
 
-      <h3 id="verification-process">Verification process</h3>
-      <p>Verification requires a government-issued ID and occasionally a proof of address.</p>
+  <h2 id="getting-started">Getting started</h2>
+  <p>
+    AlphaWealth is built to be simple, secure, and transparent. Getting started takes just a few minutes.
+  </p>
 
-      <h3 id="lost-access">Lost access</h3>
-      <p>If you lose access, contact support with your registered email and relevant details to start recovery.</p>
+  <img
+    src="https://images.unsplash.com/photo-1556742049-908f2bccf6a0"
+    alt="Getting started with AlphaWealth"
+  />
 
-      <h2 id="buying-and-deposits">Buying & deposits</h2>
-      <p>We support crypto transfers, bank transfers, and card payments where available.</p>
+  <ol>
+    <li>Create an account using a valid email address</li>
+    <li>Verify your email to activate your account</li>
+    <li>Secure your account with a strong password and 2FA</li>
+    <li>Complete identity verification to unlock higher limits</li>
+  </ol>
 
-      <h3 id="deposit-funds">How to deposit funds</h3>
-      <p>Choose asset and payment method, then follow provider instructions. On-chain deposits require confirmations.</p>
+  <hr />
 
-      <h3 id="payment-failures">Payment failures</h3>
-      <p>If a payment fails, check the provider or bank status and forward transaction details to support.</p>
+  <h2 id="account-verification">Account & verification</h2>
+  <p>
+    Verification helps keep the platform safe and compliant. The process ensures that your identity is secure.
+  </p>
 
-      <h2 id="withdrawals">Withdrawals & transfers</h2>
-      <p>Withdrawals may require additional verification and will incur network fees. Always validate destination addresses.</p>
+  <img
+    src="https://images.unsplash.com/photo-1601597112504-ef7bcf7d981f"
+    alt="Account verification"
+  />
 
-      <h2 id="fees-limits">Fees & limits</h2>
-      <p>Fees are shown at checkout and depend on provider and network conditions. Limits depend on verification level.</p>
+  <h3 id="creating-account">Creating an account</h3>
+  <p>
+    Sign up with your email and choose a strong password. Use a password manager to generate and store your credentials securely.
+  </p>
 
-      <h2 id="security">Security</h2>
-      <p>Enable 2FA, use a password manager, and report suspicious activity immediately.</p>
+  <ul>
+    <li>Passwords should be at least 12 characters long</li>
+    <li>Avoid reusing passwords from other services</li>
+    <li>Never share your login details</li>
+  </ul>
 
-      <h2 id="contact-reporting">Contact & reporting</h2>
-      <p>Use the contact widget to reach support or email support@example.com for urgent issues.</p>
-    `,
+  <h3 id="verification-process">Verification process (KYC)</h3>
+  <p>
+    Depending on your region and activity, you may need:
+  </p>
+
+  <ul>
+    <li>A government-issued photo ID</li>
+    <li>A selfie or live photo</li>
+    <li>Proof of address in some cases</li>
+  </ul>
+
+  <Callout type="tip">
+    Verification usually completes within a few hours, but may take
+    24–48 hours during peak periods.
+  </Callout>
+
+  <h3 id="lost-access">Lost access / account recovery</h3>
+  <p>
+    If you lose access, contact support with:
+  </p>
+
+  <ul>
+    <li>Registered email address</li>
+    <li>Last successful login date (approximate)</li>
+    <li>Any relevant transaction references</li>
+  </ul>
+
+  <hr />
+
+  <h2 id="buying-and-deposits">Buying & deposits</h2>
+  <p>
+    AlphaWealth supports multiple funding methods depending on your region.
+  </p>
+
+  <img
+    src="https://images.unsplash.com/photo-1621504450181-5d356f61d307"
+    alt="Depositing funds"
+  />
+
+  <h3 id="deposit-funds">How to deposit funds</h3>
+  <ol>
+    <li>Navigate to Wallet or Deposit page</li>
+    <li>Select the asset to deposit</li>
+    <li>Choose a payment method (crypto, bank, or card)</li>
+    <li>Follow on-screen instructions carefully</li>
+  </ol>
+
+  <h3 id="payment-failures">Payment failures</h3>
+  <p>
+    Payment failures can happen due to:
+  </p>
+
+  <ul>
+    <li>Insufficient balance</li>
+    <li>Bank/card restrictions</li>
+    <li>Network congestion</li>
+    <li>Provider-side issues</li>
+  </ul>
+
+  <Callout type="warning">
+    If funds are deducted but not credited, contact support with the
+    transaction reference before retrying.
+  </Callout>
+
+  <hr />
+
+  <h2 id="withdrawals">Withdrawals & transfers</h2>
+  <p>
+    Withdrawals may require additional verification depending on your activity.
+  </p>
+
+  <img
+    src="https://images.unsplash.com/photo-1591696331115-097ed312df9f"
+    alt="Withdrawals and transfers"
+  />
+
+  <ul>
+    <li>Double-check destination addresses</li>
+    <li>Ensure the correct network is selected</li>
+    <li>Be aware of applicable network fees</li>
+  </ul>
+
+  <Callout type="warning">
+    Blockchain transactions cannot be reversed once sent.
+    Always confirm details before submitting.
+  </Callout>
+
+  <hr />
+
+  <h2 id="fees-limits">Fees & limits</h2>
+  <p>
+    Fees and limits depend on verification level and the service used.
+  </p>
+
+  <ul>
+    <li>Trading fees are displayed before confirmation</li>
+    <li>Network fees vary with blockchain conditions</li>
+    <li>Higher verification levels unlock higher limits</li>
+  </ul>
+
+  <hr />
+
+  <h2 id="security">Security best practices</h2>
+  <p>
+    Keep your account secure with these recommended steps:
+  </p>
+
+  <img
+    src="https://images.unsplash.com/photo-1563986768609-322da13575f3"
+    alt="Account security"
+  />
+
+  <ul>
+    <li>Enable two-factor authentication (2FA)</li>
+    <li>Use a password manager</li>
+    <li>Never share recovery codes</li>
+    <li>Bookmark the official AlphaWealth domain</li>
+  </ul>
+
+  <h3 id="suspicious-activity">Suspicious activity</h3>
+  <p>
+    If you notice unusual logins, withdrawals, or emails claiming to be from AlphaWealth:
+  </p>
+
+  <ol>
+    <li>Change your password immediately</li>
+    <li>Disable active sessions</li>
+    <li>Contact support with full details</li>
+  </ol>
+
+  <Callout type="security">
+    AlphaWealth staff will never ask for your password,
+    2FA codes, or recovery phrases.
+  </Callout>
+
+  <hr />
+
+  <h2 id="contact-reporting">Contact & reporting</h2>
+  <p>
+    Our support team is here to help you resolve issues quickly.
+  </p>
+
+  <ul>
+    <li>Use the in-app chat widget for general support</li>
+    <li>Email <a href="mailto:support@example.com">support@example.com</a> for account-related issues</li>
+    <li>Include screenshots and transaction IDs when applicable</li>
+  </ul>
+
+  <Callout type="support">
+    Thank you for choosing AlphaWealth.
+    We’re committed to providing a secure, transparent,
+    and reliable experience for all users.
+  </Callout>
+  `,
   },
 ];
 

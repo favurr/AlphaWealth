@@ -3,6 +3,7 @@
 import React from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function TopicGrid({
   title,
@@ -34,10 +35,12 @@ export default function TopicGrid({
             <div className="mt-4">
               <Button
                 onClick={(e) => e.preventDefault()}
-                variant="link"
                 size="sm"
+                asChild
               >
+              <Link href={`/blog/${it.id}`}>
                 Read
+              </Link>
               </Button>
             </div>
           </Card>
