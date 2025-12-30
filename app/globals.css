@@ -315,3 +315,7 @@ html {
   background-color: hsl(var(--muted)/0.2);
   color: var(--foreground);
 }
+h2,
+h3 {
+  scroll-margin-top: 6rem;
+}

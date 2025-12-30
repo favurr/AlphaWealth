@@ -45,10 +45,6 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
             <p className="mt-2 text-sm text-muted-foreground opacity-90">{banners[0].subtitle}</p>
             <div className="mt-4 flex items-center">
               <Button
-              onClick={(e) => {
-                e.preventDefault();
-                openChat();
-              }}
               className="rounded-full px-4 py-2 mr-2"
               style={{
                 backgroundColor: "var(--color-primary)",
@@ -56,7 +52,7 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
               }}
               asChild
             >
-              <Link href="/">
+              <Link href="/blog/new-users">
               Read the Overview
               </Link>
             </Button>
