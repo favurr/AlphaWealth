@@ -1,8 +1,15 @@
 "use client";
 
 import React from "react";
-import { Card } from "@/components/ui/card";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function TopicGrid({
   title,
@@ -26,20 +33,22 @@ export default function TopicGrid({
 
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
         {items.map((it) => (
-          <Card key={it.id} className="p-4">
-            <div className="space-y-2">
-              <h3 className="font-semibold">{it.title}</h3>
-              <p className="text-sm text-muted-foreground">{it.excerpt}</p>
-            </div>
-            <div className="mt-4">
-              <Button
-                onClick={(e) => e.preventDefault()}
-                variant="link"
-                size="sm"
-              >
-                Read
+          <Card key={it.id}>
+            <CardHeader>
+              <CardTitle>
+                <h3 className="font-semibold">{it.title}</h3>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="min-h-12">
+              <p className="text-sm text-muted-foreground line-clamp-2">
+                {it.excerpt}
+              </p>
+            </CardContent>
+            <CardFooter>
+              <Button size="sm" asChild>
+                <Link href={`/blog/${it.id}`}>Read</Link>
               </Button>
-            </div>
+            </CardFooter>
           </Card>
         ))}
       </div>

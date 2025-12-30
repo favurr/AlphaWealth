@@ -9,11 +9,11 @@ import React, {
 } from "react";
 import Script from "next/script";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import BannerGrid from "./components/BannerGrid";
 import TopicGrid from "./components/TopicGrid";
 import IntroBanner from "./components/IntroBanner";
 import CTA from "./components/CTA";
+import BLOG_POSTS, { type BlogPost } from "@/app/(Root)/blog/data";
 
 type Banner = {
   id: string;
@@ -38,9 +38,9 @@ export default function BlogHomePage() {
 
   const banners: Banner[] = [
     {
-      id: "priority-support",
-      title: "Get Priority Support",
-      subtitle: "Jump the queue — connect your wallet to qualify",
+      id: "start-here",
+      title: "New to AlphaWealth?",
+      subtitle: "Start here to understand how AlphaWealth works",
       color: "bg-blue-600",
       accent: "bg-yellow-300",
     },
@@ -53,96 +53,60 @@ export default function BlogHomePage() {
     },
   ];
 
-  const trending: Topic[] = [
-    {
-      id: "t1",
-      title: "Market roundup: This week in crypto",
-      excerpt: "Key moves, notable listings and a quick market health check.",
-    },
-    {
-      id: "t2",
-      title: "How to secure your account",
-      excerpt: "Practical steps to protect your funds and recognise phishing.",
-    },
-    {
-      id: "t3",
-      title: "Margin trading 101",
-      excerpt: "An intro to margin positions and risk management.",
-    },
-    {
-      id: "t4",
-      title: "Understanding network fees",
-      excerpt: "Why fees change and how to minimise costs.",
-    },
-    {
-      id: "t5",
-      title: "Deposit guide: bank vs card",
-      excerpt: "Choose the right method and avoid common mistakes.",
-    },
-    {
-      id: "t6",
-      title: "Intro to staking",
-      excerpt: "Passive yield options for long-term holders.",
-    },
-  ];
+  const allTopics: Topic[] = BLOG_POSTS.map((post) => ({
+  id: post.slug,
+  title: post.title,
+  excerpt: post.excerpt ?? "",
+}));
 
-  const supportTopics: Topic[] = [
-    {
-      id: "s1",
-      title: "Verify your account",
-      excerpt: "How to complete KYC and increase limits.",
-    },
-    {
-      id: "s2",
-      title: "Payment failures",
-      excerpt: "Troubleshoot failed transactions and chargebacks.",
-    },
-    {
-      id: "s3",
-      title: "Withdrawals & transfers",
-      excerpt: "Tips for faster and safer withdrawals.",
-    },
-    {
-      id: "s4",
-      title: "Two-factor auth",
-      excerpt: "Enabling 2FA and recovery options.",
-    },
-    {
-      id: "s5",
-      title: "Suspicious activity",
-      excerpt: "What to do if you suspect account compromise.",
-    },
-    {
-      id: "s6",
-      title: "Contact & reporting",
-      excerpt: "How to open a ticket and what to include.",
-    },
-  ];
+const trendingTopics = BLOG_POSTS
+  .filter((p) => !p.isSupport)
+  .map((p) => ({
+    id: p.slug,
+    title: p.title,
+    excerpt: p.excerpt ?? "",
+  }));
+
+const supportTopics = BLOG_POSTS
+  .filter((p) => p.isSupport)
+  .map((p) => ({
+    id: p.slug,
+    title: p.title,
+    excerpt: p.excerpt ?? "",
+  }));
+
 
   const filteredTrending = useMemo(
-    () =>
-      trending.filter((t) =>
-        (t.title + " " + t.excerpt).toLowerCase().includes(query.toLowerCase()),
-      ),
-    [query],
-  );
+  () =>
+    trendingTopics.filter((t) =>
+      (t.title + " " + t.excerpt)
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    ),
+  [query, trendingTopics]
+);
 
-  const filteredSupport = useMemo(
-    () =>
-      supportTopics.filter((t) =>
-        (t.title + " " + t.excerpt).toLowerCase().includes(query.toLowerCase()),
-      ),
-    [query],
-  );
+const filteredSupport = useMemo(
+  () =>
+    supportTopics.filter((t) =>
+      (t.title + " " + t.excerpt)
+        .toLowerCase()
+        .includes(query.toLowerCase())
+    ),
+  [query, supportTopics]
+);
+
 
   // Suggestions: combine lists and search only for suggestions (doesn't filter the page cards)
   const suggestions = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    return [...trending, ...supportTopics].filter((it) =>
-      (it.title + " " + it.excerpt).toLowerCase().includes(q),
-    );
-  }, [query]);
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+
+  return allTopics.filter((it) =>
+    (it.title + " " + it.excerpt).toLowerCase().includes(q)
+  );
+}, [query, allTopics]);
+
 
   useEffect(() => {
     setOpen(query.trim().length > 0 && suggestions.length > 0);
@@ -196,7 +160,7 @@ export default function BlogHomePage() {
         setActiveIndex(-1);
       }
     },
-    [open, activeIndex, suggestions, selectSuggestion],
+    [open, activeIndex, suggestions, selectSuggestion]
   );
 
   return (

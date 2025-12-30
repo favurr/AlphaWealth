@@ -118,3 +118,27 @@ export function Footer() {
     </footer>
   );
 }
+
+export function SmallFooter() {
+  return (
+    <footer className="relative">
+      <div
+        className={cn(
+          "mx-auto max-w-5xl lg:border-x",
+          "bg-[radial-gradient(35%_80%_at_30%_0%,--theme(--color-foreground/.05),transparent)]",
+        )}
+      >
+        <div className="absolute inset-x-0 h-px w-full bg-border" />
+        <div className="flex flex-col items-center justify-center gap-2 p-4">
+          <a className="flex items-center space-x-2" href="/">
+            <LogoIcon className="h-5" />
+            <span>AlphaWealth</span>
+          </a>
+          <p className="text-xs text-muted-foreground text-center">
+            &copy; {new Date().getFullYear()} AlphaWealth
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
