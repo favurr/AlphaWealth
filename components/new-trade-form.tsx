@@ -55,7 +55,7 @@ const NewTradeForm = () => {
           name="account"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Select Account Type</FormLabel>
+              <FormLabel>Type</FormLabel>
               <FormControl>
                 <Select>
                   <SelectTrigger className="w-full">
