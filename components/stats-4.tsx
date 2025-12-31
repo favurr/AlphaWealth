@@ -1,3 +1,5 @@
+import CountUp from "./ui/count-up";
+
 export default function StatsSection() {
   return (
     <section className="py-16 bg-muted md:py-32">
@@ -21,13 +23,13 @@ export default function StatsSection() {
             <div className="mb-12 mt-12 grid grid-cols-2 gap-2 md:mb-0">
               <div className="space-y-4">
                 <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
-                  +1200
+                  <CountUp value={1200} prefix="+" /> 
                 </div>
                 <p>Monthly Customers</p>
               </div>
               <div className="space-y-4">
                 <div className="bg-linear-to-r from-zinc-950 to-zinc-600 bg-clip-text text-5xl font-bold text-transparent dark:from-white dark:to-zinc-800">
-                  +500
+                  <CountUp value={500} prefix="+" />
                 </div>
                 <p>Active Traders</p>
               </div>

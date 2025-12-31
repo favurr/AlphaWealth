@@ -13,7 +13,7 @@ import { Card } from "@/components/ui/card";
 
 export default function ContactSection() {
   return (
-    <section className="py-32">
+    <section>
       <div className="mx-auto max-w-3xl px-8 lg:px-0">
         <h1 className="text-center text-4xl font-semibold lg:text-5xl">
           Help Center
@@ -38,7 +38,7 @@ export default function ContactSection() {
             <div>
               <Label htmlFor="country">Country/Region</Label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select Country/Region" />
                 </SelectTrigger>
                 <SelectContent>
@@ -60,7 +60,7 @@ export default function ContactSection() {
             <div>
               <Label htmlFor="job">Job function</Label>
               <Select>
-                <SelectTrigger>
+                <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select Job Function" />
                 </SelectTrigger>
                 <SelectContent>

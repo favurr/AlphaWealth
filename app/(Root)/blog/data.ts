@@ -1,5 +1,3 @@
-import Callout from "./components/ui/Callout";
-
 export type BlogPost = {
   slug: string;
   title: string;
@@ -595,6 +593,382 @@ export const BLOG_POSTS: BlogPost[] = [
     </p>
   `,
   },
+  {
+    slug: "security-best-practices",
+    title: "Security Best Practices for Your Account",
+    date: "2025-12-30",
+    excerpt:
+      "Learn how to secure your AlphaWealth account, protect your funds, avoid scams, and respond correctly to suspicious activity.",
+    content: `
+    <p>
+      Security is a shared responsibility. While <strong>AlphaWealth</strong> is built with
+      industry-standard protections, your personal actions play a major role in keeping
+      your funds safe. This guide outlines essential security best practices every user
+      should follow.
+    </p>
+
+    <Callout type="warning">
+      AlphaWealth will never ask for your password, 2FA codes, or recovery information.
+      Any request for these details is a scam.
+    </Callout>
+
+    <hr />
+
+    <h2 id="account-protection">Protecting Your Account</h2>
+    <p>
+      Your account credentials are the first line of defense against unauthorized access.
+      Always follow these core rules:
+    </p>
+
+    <ul>
+      <li>Use a strong, unique password that you do not use anywhere else</li>
+      <li>Enable two-factor authentication (2FA) immediately</li>
+      <li>Do not share your login details with anyone, for any reason</li>
+      <li>Log out of your account on shared or public devices</li>
+    </ul>
+
+    <p>
+      Using a reputable password manager is strongly recommended to generate and store
+      secure passwords safely.
+    </p>
+
+    <hr />
+
+    <h2 id="device-security">Securing Your Devices</h2>
+    <p>
+      Even the most secure account can be compromised if your device is unsafe.
+      Make sure the devices you use to access AlphaWealth are protected.
+    </p>
+
+    <ul>
+      <li>Keep your operating system and browser up to date</li>
+      <li>Install applications only from trusted sources</li>
+      <li>Use screen locks, PINs, or biometric security</li>
+      <li>Avoid accessing your account on public or shared computers</li>
+    </ul>
+
+    <Callout type="tip">
+      Avoid using public Wi-Fi networks when performing sensitive actions like selling
+      crypto or withdrawing funds.
+    </Callout>
+
+    <hr />
+
+    <h2 id="scams-and-fraud">Avoiding Scams & Fraud</h2>
+    <p>
+      Scammers may impersonate support agents, websites, or social media accounts.
+      Always remain cautious when interacting online.
+    </p>
+
+    <ul>
+      <li>Do not click suspicious links sent via email, SMS, or social media</li>
+      <li>Verify website URLs before logging in</li>
+      <li>Ignore urgent messages asking you to “secure” or “verify” your account</li>
+      <li>Be cautious of investment promises that sound too good to be true</li>
+    </ul>
+
+    <p>
+      If you believe you have encountered a scam or fraudulent activity, report it
+      immediately through the <a href="/blog/support">Support Center</a>.
+    </p>
+
+    <hr />
+
+    <h2 id="sending-funds-safely">Sending Funds Safely</h2>
+    <p>
+      Blockchain transactions are irreversible. Before sending any funds, always:
+    </p>
+
+    <ul>
+      <li>Double-check the recipient wallet address</li>
+      <li>Confirm the selected blockchain network</li>
+      <li>Send a small test transaction if unsure</li>
+    </ul>
+
+    <h3 id="wrong-network">Sending Funds to the Wrong Network</h3>
+    <p>
+      Sending crypto on the wrong network may result in permanent loss of funds.
+      Always ensure the network shown on AlphaWealth matches the destination wallet’s network.
+    </p>
+
+    <Callout type="warning">
+      AlphaWealth cannot reverse blockchain transactions once they are confirmed.
+      Always verify details before submitting.
+    </Callout>
+
+    <hr />
+
+    <h2 id="selling-and-withdrawals">Selling Crypto & Withdrawals</h2>
+    <p>
+      When selling crypto or transferring funds to your bank account, accuracy matters.
+    </p>
+
+    <ul>
+      <li>Ensure your account is fully verified</li>
+      <li>Confirm bank details before submitting a withdrawal</li>
+      <li>Monitor your transaction status after submission</li>
+    </ul>
+
+    <h3 id="selling-fails">If Selling Crypto Fails</h3>
+    <p>
+      A sale may fail due to network congestion, balance issues, or temporary service
+      interruptions. If this happens:
+    </p>
+
+    <ol>
+      <li>Do not retry immediately</li>
+      <li>Check your transaction history for status updates</li>
+      <li>Wait a few minutes if the issue is network-related</li>
+      <li>Contact support if the failure persists</li>
+    </ol>
+
+    <hr />
+
+    <h2 id="reporting-issues">Reporting Suspicious Activity</h2>
+    <p>
+      If you notice unusual logins, unexpected withdrawals, or suspicious messages:
+    </p>
+
+    <ol>
+      <li>Change your password immediately</li>
+      <li>Enable or reconfigure 2FA</li>
+      <li>Report the issue through the <a href="/blog/support">Support Center</a></li>
+    </ol>
+
+    <Callout type="support">
+      Reporting issues early increases the chances of protecting your account
+      and preventing further harm.
+    </Callout>
+
+    <hr />
+
+    <p>
+      Staying informed and cautious is the best way to protect your funds.
+      AlphaWealth is committed to providing a secure platform — your awareness
+      completes the security loop.
+    </p>
+  `,
+  },
+  {
+  slug: "buy-crypto-guide",
+  title: "How to Buy Crypto Safely",
+  date: "2025-12-30",
+  excerpt:
+    "A complete step-by-step guide to buying cryptocurrency, including payment methods, verification, common issues, and security tips.",
+  content: `
+    <p>
+      Buying cryptocurrency for the first time can feel overwhelming. At
+      <strong>AlphaWealth</strong>, the process is designed to be simple, secure,
+      and transparent. This guide walks you through everything you need to know —
+      from preparing your account to completing your first crypto purchase safely.
+    </p>
+
+    <Callout type="support">
+      If you are completely new to AlphaWealth, start with the
+      <a href="/blog/new-users">Getting Started Guide</a> before buying crypto.
+    </Callout>
+
+    <hr />
+
+    <h2 id="before-you-buy">Before You Buy Crypto</h2>
+    <p>
+      Before purchasing crypto, ensure your account is fully prepared.
+      Completing these steps helps prevent delays and failed transactions.
+    </p>
+
+    <ul>
+      <li>Create and verify your AlphaWealth account</li>
+      <li>Secure your account with a strong password and 2FA</li>
+      <li>Complete identity verification if required</li>
+      <li>Ensure your payment method is active and supported</li>
+    </ul>
+
+    <Callout type="tip">
+      Verified accounts experience fewer limits and smoother transactions.
+    </Callout>
+
+    <hr />
+
+    <h2 id="supported-assets">Supported Cryptocurrencies</h2>
+    <p>
+      AlphaWealth allows users to buy supported cryptocurrencies directly
+      on the platform. Available assets may vary depending on your region
+      and account status.
+    </p>
+
+    <ul>
+      <li>Major cryptocurrencies such as Bitcoin and Ethereum</li>
+      <li>Popular stablecoins for reduced volatility</li>
+      <li>Other supported digital assets available in your dashboard</li>
+    </ul>
+
+    <p>
+      Always confirm the selected asset before proceeding with a purchase.
+    </p>
+
+    <hr />
+
+    <h2 id="how-to-buy">How to Buy Crypto on AlphaWealth</h2>
+    <p>
+      Follow these steps to buy crypto safely on AlphaWealth:
+    </p>
+
+    <ol>
+      <li>Log in to your AlphaWealth account</li>
+      <li>Navigate to the <strong>Buy Crypto</strong> section</li>
+      <li>Select the cryptocurrency you want to purchase</li>
+      <li>Enter the amount you wish to buy</li>
+      <li>Choose a supported payment method</li>
+      <li>Review the transaction details carefully</li>
+      <li>Confirm the purchase</li>
+    </ol>
+
+    <p>
+      Once confirmed, your crypto will be credited to your wallet
+      after the transaction is completed.
+    </p>
+
+    <hr />
+
+    <h2 id="payment-methods">Payment Methods</h2>
+    <p>
+      AlphaWealth supports multiple payment options depending on your region.
+      Common methods include:
+    </p>
+
+    <ul>
+      <li>Bank transfers</li>
+      <li>Debit or credit cards</li>
+      <li>Other supported local payment providers</li>
+    </ul>
+
+    <Callout type="warning">
+      Ensure the payment method belongs to you. Third-party payments
+      may result in failed transactions.
+    </Callout>
+
+    <hr />
+
+    <h2 id="fees-and-pricing">Fees & Pricing</h2>
+    <p>
+      Fees and exchange rates are displayed before you confirm a purchase.
+      These may include:
+    </p>
+
+    <ul>
+      <li>Processing fees</li>
+      <li>Network fees</li>
+      <li>Price fluctuations due to market conditions</li>
+    </ul>
+
+    <p>
+      Always review the final amount before confirming your purchase.
+    </p>
+
+    <hr />
+
+    <h2 id="transaction-status">Understanding Transaction Status</h2>
+    <p>
+      After buying crypto, your transaction may show one of the following states:
+    </p>
+
+    <ul>
+      <li><strong>Pending:</strong> The transaction is being processed</li>
+      <li><strong>Completed:</strong> Funds have been credited successfully</li>
+      <li><strong>Failed:</strong> The transaction could not be completed</li>
+    </ul>
+
+    <p>
+      Pending transactions usually resolve within a short time, depending
+      on network and payment provider conditions.
+    </p>
+
+    <hr />
+
+    <h2 id="if-buying-fails">If Buying Crypto Fails</h2>
+    <p>
+      Occasionally, a purchase may fail due to reasons such as:
+    </p>
+
+    <ul>
+      <li>Insufficient balance</li>
+      <li>Payment provider restrictions</li>
+      <li>Network congestion</li>
+      <li>Temporary service interruptions</li>
+    </ul>
+
+    <ol>
+      <li>Check your transaction history</li>
+      <li>Confirm whether funds were deducted</li>
+      <li>Wait a few minutes before retrying</li>
+      <li>Contact the <a href="/blog/support">Support Center</a> if the issue persists</li>
+    </ol>
+
+    <Callout type="warning">
+      Do not attempt multiple purchases simultaneously for the same amount.
+    </Callout>
+
+    <hr />
+
+    <h2 id="security-tips">Security Tips When Buying Crypto</h2>
+    <p>
+      Protect your funds by following these best practices:
+    </p>
+
+    <ul>
+      <li>Always verify transaction details before confirming</li>
+      <li>Avoid buying crypto on public Wi-Fi networks</li>
+      <li>Enable 2FA for all account actions</li>
+      <li>Bookmark the official AlphaWealth website</li>
+    </ul>
+
+    <p>
+      For more information, visit the
+      <a href="/blog/security-best-practices">Security Best Practices</a> guide.
+    </p>
+
+    <hr />
+
+    <h2 id="scams-and-fraud">Avoiding Scams & Fraud</h2>
+    <p>
+      Scammers may impersonate AlphaWealth or promise guaranteed profits.
+      Stay alert and protect yourself.
+    </p>
+
+    <ul>
+      <li>Ignore unsolicited investment messages</li>
+      <li>Never share your login or 2FA details</li>
+      <li>Verify URLs before entering credentials</li>
+    </ul>
+
+    <p>
+      If you suspect a scam or fraudulent activity, report it immediately
+      via the <a href="/blog/support">Support Center</a>.
+    </p>
+
+    <hr />
+
+    <h2 id="after-buying">After Buying Crypto</h2>
+    <p>
+      Once your purchase is complete, you can:
+    </p>
+
+    <ul>
+      <li>Hold crypto in your AlphaWealth wallet</li>
+      <li>Swap supported assets</li>
+      <li>Sell crypto and withdraw funds to your bank</li>
+    </ul>
+
+    <p>
+      Always monitor your wallet and transaction history for accuracy.
+    </p>
+
+    <Callout type="support">
+      Buying crypto is the first step. AlphaWealth is here to support
+      you throughout your entire crypto journey.
+    </Callout>
+  `,
+},
 ];
 
 export default BLOG_POSTS;

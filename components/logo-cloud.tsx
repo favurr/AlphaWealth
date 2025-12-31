@@ -58,7 +58,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto w-fit invert"
-                  src="./logo cloud/CG-Wordmark.png"
+                  src="/logo cloud/CG-Wordmark.png"
                   alt="Coin Gecko Logo"
                   height="24"
                   width="24"
@@ -68,7 +68,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto h-4 w-fit invert"
-                  src="./logo cloud/CB-Wordmark.png"
+                  src="/logo cloud/CB-Wordmark.png"
                   alt="Coinbase Logo"
                   height="24"
                   width="24"
@@ -77,7 +77,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto h-4 w-fit"
-                  src="./logo cloud/Bybit-Wordmark.png"
+                  src="/logo cloud/Bybit-Wordmark.png"
                   alt="ByBit Logo"
                   height="24"
                   width="24"
@@ -86,7 +86,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto h-5 w-fit"
-                  src="./logo cloud/airswap-4.svg"
+                  src="/logo cloud/airswap-4.svg"
                   alt="Airswap Logo"
                   height="24"
                   width="24"
@@ -95,7 +95,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto w-fit"
-                  src="./logo cloud/bitmex.svg"
+                  src="/logo cloud/bitmex.svg"
                   alt="Bitmex Logo"
                   height="24"
                   width="24"
@@ -104,7 +104,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto h-4 w-fit"
-                  src="./logo cloud/binance.svg"
+                  src="/logo cloud/binance.svg"
                   alt="binance Logo"
                   height="24"
                   width="24"
@@ -113,7 +113,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto h-7 w-fit"
-                  src="./logo cloud/okex-1.svg"
+                  src="/logo cloud/okex-1.svg"
                   alt="Okex Logo"
                   height="24"
                   width="24"
@@ -122,7 +122,7 @@ export default function LogoCloud3() {
               <div className="flex">
                 <Image
                   className="mx-auto h-6 w-fit"
-                  src="./logo cloud/TW-Wordmark.png"
+                  src="/logo cloud/TW-Wordmark.png"
                   alt="Trust Wallet Logo"
                   height="24"
                   width="24"

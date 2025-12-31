@@ -58,7 +58,7 @@ const NewTradeForm = () => {
               <FormLabel>Select Account Type</FormLabel>
               <FormControl>
                 <Select>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="max-w-full">
                     <SelectValue
                       placeholder="Select an account type"
                       {...field}
@@ -89,7 +89,7 @@ const NewTradeForm = () => {
               <FormLabel>Markets</FormLabel>
               <FormControl>
                 <Select>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="max-w-full">
                     <SelectValue placeholder="Select a market" {...field} />
                   </SelectTrigger>
                   <SelectContent>
@@ -114,7 +114,7 @@ const NewTradeForm = () => {
               <FormLabel>Pairs</FormLabel>
               <FormControl>
                 <Select>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="max-w-full">
                     <SelectValue placeholder="Select a pair" {...field} />
                   </SelectTrigger>
                   <SelectContent>
@@ -149,7 +149,7 @@ const NewTradeForm = () => {
               <FormLabel>Time</FormLabel>
               <FormControl>
                 <Select>
-                  <SelectTrigger className="w-full">
+                  <SelectTrigger className="max-w-full">
                     <SelectValue placeholder="Select a time frame" {...field} />
                   </SelectTrigger>
                   <SelectContent>
