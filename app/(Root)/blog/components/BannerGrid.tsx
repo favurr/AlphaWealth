@@ -94,11 +94,13 @@ export default function BannerGrid({ banners }: { banners: Banner[] }) {
               Ask our chatbot
             </Button>
             <Button
-              onClick={(e) => e.preventDefault()}
               variant="outline"
               className="rounded-full px-4 py-2 text-muted-foreground opacity-90"
+              asChild
             >
+              <Link href="/blog/support">
               Learn more
+              </Link>
             </Button>
           </div>
         </div>

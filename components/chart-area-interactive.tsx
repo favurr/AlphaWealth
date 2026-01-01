@@ -41,7 +41,7 @@ export function ChartAreaInteractive() {
       symbol: "BITSTAMP:BTCUSD",
       colorTheme: theme === "dark" ? "dark" : "light",
       timezone: "Etc/UTC",
-      backgroundColor: "#0F0F0F",
+      backgroundColor: "rgba(242, 242, 242, 0)",
       gridColor: "rgba(242, 242, 242, 0.06)",
       watchlist: [],
       withUpdateranges: false,

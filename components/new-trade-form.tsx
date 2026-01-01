@@ -55,12 +55,12 @@ const NewTradeForm = () => {
           name="account"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Select Account Type</FormLabel>
+              <FormLabel>Type</FormLabel>
               <FormControl>
                 <Select>
                   <SelectTrigger className="w-full">
                     <SelectValue
-                      placeholder="Select an account type"
+                      placeholder="Account type"
                       {...field}
                     />
                   </SelectTrigger>
@@ -150,7 +150,7 @@ const NewTradeForm = () => {
               <FormControl>
                 <Select>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Select a time frame" {...field} />
+                    <SelectValue placeholder="Time frame" {...field} />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>

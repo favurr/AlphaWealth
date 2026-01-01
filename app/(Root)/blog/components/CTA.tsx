@@ -24,7 +24,11 @@ export default function CTA() {
     <section className="mb-16 mt-24">
       <Card
         className="p-6 text-white"
-        style={{ background: "linear-gradient(90deg,#111827,#0ea5e9)" }}
+        style={{
+          background:
+            "linear-gradient(90deg, var(--color-card) 30%, var(--color-accent) 100%)",
+          color: "var(--color-primary-foreground)",
+        }}
       >
         <div className="flex items-center justify-between gap-6">
           <div>

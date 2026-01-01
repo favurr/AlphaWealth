@@ -67,7 +67,7 @@ export default function StickyTOC({ source }: { source: string }) {
     };
 
   return (
-    <aside className="hidden xl:block fixed right-12 top-32 w-64">
+    <aside className="hidden xl:block fixed right-12 top-32 w-64 z-50000">
       <div
         className={clsx(
           "rounded-lg bg-background p-4",

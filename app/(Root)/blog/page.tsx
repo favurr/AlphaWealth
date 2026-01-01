@@ -11,7 +11,6 @@ import Script from "next/script";
 import { Input } from "@/components/ui/input";
 import BannerGrid from "./components/BannerGrid";
 import TopicGrid from "./components/TopicGrid";
-import IntroBanner from "./components/IntroBanner";
 import CTA from "./components/CTA";
 import BLOG_POSTS, { type BlogPost } from "@/app/(Root)/blog/data";
 
@@ -238,8 +237,6 @@ const filteredSupport = useMemo(
         />
 
         <TopicGrid title="Support topics" items={filteredSupport.slice(0, 6)} />
-
-        <IntroBanner />
 
         <CTA />
       </div>
