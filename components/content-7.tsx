@@ -43,7 +43,7 @@ export default function ContentSection() {
           <div className="relative mt-6 sm:mt-0">
             <div className="bg-linear-to-b aspect-67/34 relative rounded-2xl from-zinc-300 to-transparent p-px dark:from-zinc-700">
               <Image
-                src="/BG-Card.webp"
+                src="/excercise.png"
                 className="rounded-[15px]"
                 alt="payments illustration dark"
                 width={1206}
