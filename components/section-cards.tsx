@@ -20,7 +20,6 @@ import {
   Megaphone,
 } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useRef } from "react";
 
 interface DashboardData {
   capitalBTC: number;
@@ -35,33 +34,7 @@ interface DashboardData {
 }
 
 export default function SectionCards({ data }: { data: DashboardData }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    if (!containerRef.current) return;
-
-    containerRef.current.innerHTML = "";
-
-    const script = document.createElement("script");
-    script.src =
-      "https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js";
-    script.async = true;
-    script.innerHTML = JSON.stringify({
-      symbols: [
-        { proName: "BINANCE:BTCUSDT", title: "BTC/USDT" },
-        { proName: "BINANCE:ETHUSDT", title: "ETH/USDT" },
-        { proName: "NASDAQ:AAPL", title: "AAPL" },
-        { proName: "NASDAQ:TSLA", title: "TSLA" },
-      ],
-      colorTheme: theme === "dark" ? "dark" : "light",
-      locale: "en",
-      displayMode: "adaptive",
-    });
-
-    containerRef.current.appendChild(script);
-  }, [theme]);
-
+  const theme = useTheme();
   const usd = (n: number) => `$${n.toFixed(2)}`;
   const btc = (n: number) => n.toFixed(8);
 
@@ -161,9 +134,13 @@ export default function SectionCards({ data }: { data: DashboardData }) {
             </CardAction>
           </CardHeader>
           <CardFooter className="flex-col items-start gap-1.5 text-sm">
-            <div className="tradingview-widget-container" ref={containerRef}>
-              <div className="tradingview-widget-container__widget"></div>
-            </div>
+            <tv-ticker-tape
+              symbols="CRYPTOCAP:BTC,CRYPTOCAP:ETH,CRYPTOCAP:USDT,CRYPTOCAP:USDC,CRYPTOCAP:SOL,CRYPTOCAP:BNB,CMCMARKETS:GOLD,CMCMARKETS:SILVER"
+              item-size="compact"
+              hover-type="chart"
+              theme={theme === "dark" ? "light" : ""}
+              transparent
+            ></tv-ticker-tape>
           </CardFooter>
         </Card>
         <Card className="@container/card px-4">

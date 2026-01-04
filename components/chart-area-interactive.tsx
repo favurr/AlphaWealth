@@ -39,9 +39,9 @@ export function ChartAreaInteractive() {
       save_image: true,
       style: "1",
       symbol: "BITSTAMP:BTCUSD",
-      colorTheme: theme === "dark" ? "dark" : "light",
+      theme: theme === "dark" ? "dark" : "light",
       timezone: "Etc/UTC",
-      backgroundColor: "rgba(242, 242, 242, 0)",
+      backgroundColor: "#0F0F0F",
       gridColor: "rgba(242, 242, 242, 0.06)",
       watchlist: [],
       withUpdateranges: false,
@@ -53,7 +53,7 @@ export function ChartAreaInteractive() {
     if (containerRef.current) {
       containerRef.current.appendChild(script);
     }
-  }, []);
+  }, [theme]);
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-92">
