@@ -55,7 +55,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head></head>
       <body className={`${wixMadeforDisplay.variable} antialiased`}>
         {/* Start of Tawk.to Script */}
         <Script id="tawk" strategy="afterInteractive">

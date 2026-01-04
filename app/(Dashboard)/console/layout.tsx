@@ -45,23 +45,33 @@ export default async function RootLayout({
   }
 
   return (
-    <main>
-      <SidebarProvider
-        style={
-          {
-            "--sidebar-width": "calc(var(--spacing) * 72)",
-            "--header-height": "calc(var(--spacing) * 12)",
-          } as React.CSSProperties
-        }
-      >
-        <AppSidebar variant="inset" />
-        <SidebarInset>
-          <SiteHeader />
-          {children}
+    <>
+      <head>
+        <script
+          type="module"
+          src="https://widgets.tradingview-widget.com/w/en/tv-ticker-tape.js"
+        ></script>
+      </head>
+      <body>
+        <main>
+          <SidebarProvider
+            style={
+              {
+                "--sidebar-width": "calc(var(--spacing) * 72)",
+                "--header-height": "calc(var(--spacing) * 12)",
+              } as React.CSSProperties
+            }
+          >
+            <AppSidebar variant="inset" />
+            <SidebarInset>
+              <SiteHeader />
+              {children}
 
-          <Toaster />
-        </SidebarInset>
-      </SidebarProvider>
-    </main>
+              <Toaster />
+            </SidebarInset>
+          </SidebarProvider>
+        </main>
+      </body>
+    </>
   );
 }
