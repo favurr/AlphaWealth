@@ -63,17 +63,16 @@ const generateOrderID = (length = 12) => {
 
 const ASSET_INFO: Record<string, { image: string; text: string }> = {
   BTC: {
-    image: "/qrcodes/btc.jpg",
-    text: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa",
+    image: "/qrcodes/BTC.jpeg",
+    text: "bc1qpza2fu9wwfvywzqzrcd7xyxja5v3qf8yh559n4",
   },
-  ETH: {
-    image: "/qrcodes/eth.jpg",
-    text: "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+  USDT: {
+    image: "/qrcodes/USDT.jpeg",
+    text: "0x8D45424C4098541cA9d3dAa96721876A4d51F2b7",
   },
-  USDT: { image: "/qrcodes/usdt.jpg", text: "TXYZ1234567890ABCDEF" },
   USDC: {
-    image: "/qrcodes/usdc.jpg",
-    text: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    image: "/qrcodes/USDC.jpeg",
+    text: "0x8D45424C4098541cA9d3dAa96721876A4d51F2b7",
   },
 };
 
@@ -166,7 +165,6 @@ export default function DepositForm() {
                   <SelectContent>
                     {/* Crypto */}
                     <SelectItem value="BTC">Bitcoin (BTC)</SelectItem>
-                    <SelectItem value="ETH">Ethereum (ETH)</SelectItem>
                     <SelectItem value="USDT">USDT</SelectItem>
                     <SelectItem value="USDC">USDC</SelectItem>
                     {/* Manual */}
