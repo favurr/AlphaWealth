@@ -1,8 +1,5 @@
 "use client";
 
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { LogoIcon } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,26 +11,25 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import { signInUser } from "@/server/users";
-import { useState } from "react";
-import { toast } from "sonner";
+import { requestPasswordReset } from "@/server/users";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { z } from "zod";
 
 const formSchema = z.object({
   email: z.email(),
-  password: z.string().min(6),
 });
 
-export default function LoginPage() {
-  const router = useRouter();
+export default function ForgotPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
-      password: "",
     },
   });
 
@@ -41,10 +37,9 @@ export default function LoginPage() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
-      const response = await signInUser(values.email, values.password);
+      const response = await requestPasswordReset(values.email);
       if (response?.success) {
-        toast.success(response?.message + ", Redirecting...");
-        router.push("/console/dashboard");
+        toast.success(response?.message);
       } else {
         toast.error(response?.message);
       }
@@ -71,9 +66,11 @@ export default function LoginPage() {
                 <LogoIcon />
               </Link>
               <h1 className="mb-1 mt-4 text-xl font-semibold">
-                Sign In to AlphaWealth
+                Recover Password
               </h1>
-              <p className="text-sm">Welcome back! Sign in to continue</p>
+              <p className="text-sm">
+                Enter your email to receive a reset link
+              </p>
             </div>
 
             <div className="mt-6 space-y-6">
@@ -93,51 +90,27 @@ export default function LoginPage() {
                 />
               </div>
 
-              <div className="space-y-0.5">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className="flex items-center justify-between">
-                        <FormLabel>Password</FormLabel>
-                        <Button asChild variant="link" size="sm">
-                          <Link
-                            href="/auth/forgot-password"
-                            className="link intent-info variant-ghost text-sm"
-                          >
-                            Forgot your Password ?
-                          </Link>
-                        </Button>
-                      </div>
-                      <FormControl>
-                        <Input
-                          type="password"
-                          placeholder="********"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
               <Button className="w-full" type="submit" disabled={isLoading}>
                 {isLoading ? (
                   <Loader2 className="size-4 animate-spin" />
                 ) : (
-                  "Sign In"
+                  "Send Reset Link"
                 )}
               </Button>
+            </div>
+
+            <div className="mt-6 text-center">
+              <p className="text-muted-foreground text-sm">
+                We'll send you a link to reset your password.
+              </p>
             </div>
           </div>
 
           <div className="p-3">
             <p className="text-accent-foreground text-center text-sm">
-              Don't have an account ?
+              Remember your password?{" "}
               <Button asChild variant="link" className="px-2">
-                <Link href="/auth/signup">Create account</Link>
+                <Link href="/auth/login">Log in</Link>
               </Button>
             </p>
           </div>

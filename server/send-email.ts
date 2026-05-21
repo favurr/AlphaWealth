@@ -96,7 +96,7 @@ export async function sendEmail({
   subject: string;
   meta: {
     description: string;
-    link: string;
+    link?: string;
   };
 }) {
   const mailOptions = {
@@ -123,6 +123,128 @@ export async function sendEmail({
             <a href="${meta.link}" style="${styles.button}">
               Verify your email
             </a>
+
+            <div style="${styles.divider}"></div>
+
+            <p style="${styles.footerText}">
+              If you did not request this action, you can safely ignore this email.
+              No changes will be made to your account.
+            </p>
+
+            <p style="${styles.footerMuted}">
+              © ${new Date().getFullYear()} EliteWealth. All rights reserved.
+            </p>
+
+          </div>
+        </div>
+      </body>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true };
+  } catch (err) {
+    console.error("[SendEmail]:", err);
+    return { success: false };
+  }
+}
+
+export async function sendPasswordResetEmail({
+  to,
+  subject,
+  meta,
+}: {
+  to: string;
+  subject: string;
+  meta: {
+    description: string;
+    link?: string;
+  };
+}) {
+  const mailOptions = {
+    from: `EliteWealth <${process.env.NODEMAILER_USER}>`,
+    to,
+    subject: `EliteWealth • ${subject}`,
+    html: `
+      <body style="${styles.body}">
+        <div style="${styles.wrapper}">
+          <div style="${styles.card}">
+            
+            <div style="${styles.logoWrap}">
+              <span style="${styles.logoText}">EW</span>
+            </div>
+
+            <h1 style="${styles.heading}">
+              ${subject}
+            </h1>
+
+            <p style="${styles.paragraph}">
+              ${meta.description.replace(/\n/g, "<br /><br />")}
+            </p>
+
+            <a href="${meta.link}" style="${styles.button}">
+              Reset Password
+            </a>
+
+            <div style="${styles.divider}"></div>
+
+            <p style="${styles.footerText}">
+              If you did not request this action, you can safely ignore this email.
+              No changes will be made to your account.
+            </p>
+
+            <p style="${styles.footerMuted}">
+              © ${new Date().getFullYear()} EliteWealth. All rights reserved.
+            </p>
+
+          </div>
+        </div>
+      </body>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return { success: true };
+  } catch (err) {
+    console.error("[SendEmail]:", err);
+    return { success: false };
+  }
+}
+
+export async function onPasswordResetEmail({
+  to,
+  subject,
+  meta,
+}: {
+  to: string;
+  subject: string;
+  meta: {
+    description: string;
+    link?: string;
+  };
+}) {
+  const mailOptions = {
+    from: `EliteWealth <${process.env.NODEMAILER_USER}>`,
+    to,
+    subject: `EliteWealth • ${subject}`,
+    html: `
+      <body style="${styles.body}">
+        <div style="${styles.wrapper}">
+          <div style="${styles.card}">
+            
+            <div style="${styles.logoWrap}">
+              <span style="${styles.logoText}">EW</span>
+            </div>
+
+            <h1 style="${styles.heading}">
+              ${subject}
+            </h1>
+
+            <p style="${styles.paragraph}">
+              ${meta.description.replace(/\n/g, "<br /><br />")}
+            </p>
 
             <div style="${styles.divider}"></div>
 

@@ -2,8 +2,8 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 
+import { onPasswordResetEmail, sendEmail, sendPasswordResetEmail } from "@/server/send-email";
 import { prisma } from "./prisma";
-import { sendEmail } from "@/server/send-email";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -12,6 +12,25 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 6,
+    sendResetPassword: async ({ user, url }) => {
+      await sendPasswordResetEmail({
+        to: user.email,
+        subject: "Reset Your EliteWealth Password",
+        meta: {
+          description: `We received a request to reset your EliteWealth password.`,
+          link: url,
+        },
+      });
+    },
+    onPasswordReset: async ({ user }) => {
+      await onPasswordResetEmail({
+        to: user.email,
+        subject: "Your EliteWealth Password Has Been Reset",
+        meta: {
+          description: `Your EliteWealth password has been successfully reset. If you did not initiate this change, please contact our support team immediately.`,
+        },
+      });
+    }
   },
   emailVerification: {
     sendOnSignUp: true,
@@ -21,7 +40,7 @@ export const auth = betterAuth({
       const { searchParams } = new URL(url);
       const token = searchParams.get("token");
 
-      const verificationUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/verify?token=${token}`;
+      const verificationUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/auth/reset-password?token=${token}`;
       await sendEmail({
         to: user.email,
         subject: "Verify Your EliteWealth Email Address",
