@@ -1,5 +1,6 @@
 import ResetPasswordPage from "@/components/reset-password";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Reset Password — Modernize",
@@ -9,7 +10,17 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-  return <ResetPasswordPage />;
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
+      <ResetPasswordPage />
+    </Suspense>
+  );
 };
 
 export default page;
