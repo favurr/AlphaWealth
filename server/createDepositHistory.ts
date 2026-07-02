@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { auth } from "@/lib/auth";
-import { TransactionType } from "@/generated/prisma/enums";
+import { TransactionType } from "../generated/prisma/enums";
 import { headers } from "next/headers";
 
 export async function createDepositHistory({

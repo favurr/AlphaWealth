@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { TransactionType } from "@/generated/prisma/client";
+import { TransactionType } from "../../../../../generated/prisma/client";
 
 interface CreateTransactionInput {
   userId: string;

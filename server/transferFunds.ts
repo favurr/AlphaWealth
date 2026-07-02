@@ -3,7 +3,7 @@
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
-import { TransactionType } from "@/generated/prisma/enums";
+import { TransactionType } from "../generated/prisma/enums";
 import crypto from "crypto";
 
 export async function transferFunds({
