@@ -29,6 +29,8 @@ export interface UserType {
   profit: number;
   tradeStatus: "LOSS" | "WIN";
   cryptoPlan: "SILVER" | "GOLD" | "DIAMOND" | "ELITE" | "EXCLUSIVE";
+  hasPin: boolean;
+  withdrawalPinPaid: boolean;
 }
 
 export default function UsersTable() {
@@ -83,6 +85,7 @@ export default function UsersTable() {
                 <TableHead>Profit</TableHead>
                 <TableHead>Trade Status</TableHead>
                 <TableHead>Crypto Plan</TableHead>
+                <TableHead>PIN Paid</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
@@ -107,6 +110,7 @@ export default function UsersTable() {
                   <TableCell>$ {user.profit.toLocaleString()}</TableCell>
                   <TableCell>{user.tradeStatus}</TableCell>
                   <TableCell>{user.cryptoPlan}</TableCell>
+                  <TableCell>{user.withdrawalPinPaid ? "Yes" : "No"}</TableCell>
                   <TableCell className="text-right flex gap-2 justify-end">
                     <EditUserDialog
                       user={user}

@@ -209,6 +209,8 @@ export default function Kyc() {
                   src={frontPreview}
                   alt="Front ID"
                   className="w-full h-full object-cover"
+                  width={500}
+                  height={400}
                 />
               ) : (
                 <p className="text-xs text-gray-500">Upload</p>
@@ -229,7 +231,8 @@ export default function Kyc() {
                   src={backPreview}
                   alt="Back ID"
                   className="w-full h-full object-cover"
-                />
+                  width={500}
+                  height={400}/>
               ) : (
                 <p className="text-xs text-gray-500">Upload</p>
               )}

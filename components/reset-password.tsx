@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -31,16 +31,24 @@ const formSchema = z
     path: ["confirmPassword"],
   });
 
-export default function ResetPasswordPage() {
+export default function ResetPasswordPage({ tokenProp }: { tokenProp?: string }) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = useState(false);
   const [tokenError, setTokenError] = useState(false);
 
-  // Better Auth embeds the token in the URL as a path segment, not a query param.
-  // The full URL looks like: /auth/reset-password?token=<token>
-  // (Better Auth v1 puts it as a query param when callbackURL is used)
-  const token = searchParams.get("token");
+  const rawToken = searchParams.get("token");
+  const token = useMemo(() => {
+    if (tokenProp) return tokenProp;
+    if (rawToken) return rawToken;
+
+    if (typeof window !== "undefined") {
+      const pathToken = window.location.pathname.split("/").pop();
+      return pathToken && pathToken !== "reset-password" ? pathToken : null;
+    }
+
+    return null;
+  }, [rawToken, tokenProp]);
 
   useEffect(() => {
     if (!token) {

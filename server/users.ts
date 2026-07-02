@@ -5,6 +5,22 @@ import { headers } from "next/headers";
 import { APIError } from "better-auth/api";
 import { toast } from "sonner";
 
+const getAppUrl = async () => {
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL;
+  }
+
+  const headersList = await headers();
+  const host = headersList.get("x-forwarded-host") ?? headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto") ?? "https";
+
+  if (host) {
+    return `${protocol}://${host}`;
+  }
+
+  return "http://localhost:3000";
+};
+
 export const signInUser = async (email: string, password: string) => {
   try {
     await auth.api.signInEmail({
@@ -105,10 +121,12 @@ export const getSession = async () => {
 
 export const requestPasswordReset = async (email: string) => {
   try {
+    const appUrl = await getAppUrl();
+
     await auth.api.requestPasswordReset({
       body: {
         email,
-        redirectTo: "http://localhost:300/auth/reset-password",
+        redirectTo: `${appUrl}/auth/reset-password`,
       },
     });
 
@@ -128,11 +146,10 @@ export const requestPasswordReset = async (email: string) => {
   }
 };
 
-export const resetPassword = async (newPassword: string) => {
-  const token = new URLSearchParams(window.location.search).get("token");
+export const resetPassword = async (newPassword: string, token: string) => {
   if (!token) {
-    toast.error("no token")
-    return
+    toast.error("No reset token was provided.");
+    return;
   }
 
   try {

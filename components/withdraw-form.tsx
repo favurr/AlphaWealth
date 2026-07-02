@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -69,12 +69,15 @@ const paypalSchema = z.object({
 /* ---------------- Component ---------------- */
 
 export default function WithdrawForm() {
-  const [oopsOpen, setOopsOpen] = useState(true);
+  const [oopsOpen, setOopsOpen] = useState(false);
   const [bankOpen, setBankOpen] = useState(false);
   const [wireOpen, setWireOpen] = useState(false);
   const [cryptoOpen, setCryptoOpen] = useState(false);
   const [paypalOpen, setPaypalOpen] = useState(false);
-  const [pinOpen, setPinOpen] = useState(false);
+  const [successOpen, setSuccessOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [hasPaidPin, setHasPaidPin] = useState<boolean | null>(null);
+  const [showPinPrompt, setShowPinPrompt] = useState(false);
   const [bankType, setBankType] = useState("");
 
   const [pendingWithdrawal, setPendingWithdrawal] = useState<any>(null);
@@ -87,30 +90,98 @@ export default function WithdrawForm() {
   const pinForm = useForm<{ pin: string }>({ defaultValues: { pin: "" } });
 
   /* ---------------- Handlers ---------------- */
+  useEffect(() => {
+    async function loadUser() {
+      try {
+        const res = await fetch("/api/me");
+        const data = await res.json();
+        setHasPaidPin(Boolean(data?.user?.withdrawalPinPaid));
+        if (!data?.user?.withdrawalPinPaid) {
+          setOopsOpen(true);
+        }
+      } catch {
+        setHasPaidPin(false);
+        setOopsOpen(true);
+      }
+    }
+
+    loadUser();
+  }, []);
+
+  const showSuccess = (message: string) => {
+    setSuccessMessage(message);
+    setSuccessOpen(true);
+  };
+
+  const finishWithdrawWithPaidPin = () => {
+    setPendingWithdrawal(null);
+    setBankOpen(false);
+    setWireOpen(false);
+    setCryptoOpen(false);
+    setPaypalOpen(false);
+    setShowPinPrompt(false);
+    showSuccess("Withdraw request sent, admins are verifying withdrawal.");
+  };
+
+  const requestPinVerification = (values: any) => {
+    setPendingWithdrawal(values);
+    setShowPinPrompt(true);
+  };
+
   const handleBankSubmit = (values: z.infer<typeof bankSchema>) => {
     setPendingWithdrawal(values);
-    setPinOpen(true);
+    if (hasPaidPin) {
+      requestPinVerification(values);
+    } else {
+      setOopsOpen(true);
+    }
   };
 
   const handleWireSubmit = (values: z.infer<typeof wireSchema>) => {
     setPendingWithdrawal(values);
-    setPinOpen(true);
+    if (hasPaidPin) {
+      requestPinVerification(values);
+    } else {
+      setOopsOpen(true);
+    }
   };
 
   const handleCryptoSubmit = (values: z.infer<typeof cryptoSchema>) => {
     setPendingWithdrawal(values);
-    setPinOpen(true);
+    if (hasPaidPin) {
+      requestPinVerification(values);
+    } else {
+      setOopsOpen(true);
+    }
   };
 
   const handlePaypalSubmit = (values: z.infer<typeof paypalSchema>) => {
     setPendingWithdrawal(values);
-    setPinOpen(true);
+    if (hasPaidPin) {
+      requestPinVerification(values);
+    } else {
+      setOopsOpen(true);
+    }
   };
 
-  const handlePinConfirm = (values: { pin: string }) => {
-    toast.error("Invalid withdrawal PIN"); // always invalid for now
-    pinForm.reset();
-    setPinOpen(false);
+  const handlePinConfirm = async (values: { pin: string }) => {
+    try {
+      const res = await fetch("/api/withdraw/verify-pin", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pin: values.pin }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data?.error || "Invalid withdrawal PIN");
+      }
+
+      finishWithdrawWithPaidPin();
+      pinForm.reset();
+    } catch (err: any) {
+      toast.error(err.message ?? "Invalid withdrawal PIN");
+    }
   };
 
   /* ---------------- UI ---------------- */
@@ -169,12 +240,13 @@ export default function WithdrawForm() {
       </div>
 
       {/* PIN DIALOG (shared) */}
-      <Dialog open={pinOpen} onOpenChange={setPinOpen}>
+      <Dialog open={showPinPrompt} onOpenChange={setShowPinPrompt}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Enter Withdrawal PIN</DialogTitle>
+            <DialogTitle>Verify Withdrawal PIN</DialogTitle>
             <DialogDescription>
-              Confirm your withdrawal by entering your 6-digit withdrawal PIN.
+              Enter your withdrawal PIN to verify the request before it is sent
+              for admin review.
             </DialogDescription>
           </DialogHeader>
 
@@ -201,7 +273,7 @@ export default function WithdrawForm() {
                 <Button
                   type="button"
                   variant="outline"
-                  onClick={() => setPinOpen(false)}
+                  onClick={() => setShowPinPrompt(false)}
                 >
                   Cancel
                 </Button>
@@ -209,6 +281,18 @@ export default function WithdrawForm() {
               </DialogFooter>
             </form>
           </Form>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={successOpen} onOpenChange={setSuccessOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Request Sent</DialogTitle>
+            <DialogDescription>{successMessage}</DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button onClick={() => setSuccessOpen(false)}>Close</Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
       {/* ================= DIALOGS ================= */}
@@ -232,7 +316,7 @@ export default function WithdrawForm() {
                     <FormControl>
                       <Select
                         {...field}
-                        onValueChange={(val) => {
+                        onValueChange={(val: string) => {
                           field.onChange(val);
                           setBankType(val);
                         }}
@@ -350,7 +434,9 @@ export default function WithdrawForm() {
                         type="number"
                         step="any"
                         {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                          field.onChange(Number(e.target.value))
+                        }
                       />
                     </FormControl>
                     <FormMessage />
@@ -441,7 +527,9 @@ export default function WithdrawForm() {
                         step="any"
                         placeholder="0.00"
                         {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                          field.onChange(Number(e.target.value))
+                        }
                       />
                     </FormControl>
                     <FormMessage />
@@ -547,7 +635,9 @@ export default function WithdrawForm() {
                         step="any"
                         placeholder="0.00"
                         {...field}
-                        onChange={(e) => field.onChange(Number(e.target.value))}
+                        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                          field.onChange(Number(e.target.value))
+                        }
                       />
                     </FormControl>
                     <FormMessage />

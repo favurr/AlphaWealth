@@ -53,6 +53,7 @@ model User {
   cryptoPlan          CryptoPlan      @default(SILVER)
   profit              Float           @default(0)
   withdrawalPin       String? // 6-digit hashed pin
+  withdrawalPinPaid   Boolean         @default(false)
   defaultPayoutMethod String? // optional default: BANK | WIRE | CRYPTO | PAYPAL
   histories           History[]
   role                userRole        @default(USER)

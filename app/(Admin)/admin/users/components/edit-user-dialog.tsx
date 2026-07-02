@@ -3,6 +3,9 @@
 import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
 import {
   Dialog,
   DialogContent,
@@ -19,8 +22,12 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { type UpdateUserInput, updateUser } from "../actions/user-actions";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
-export interface EditableUser extends UpdateUserInput {}
+export interface EditableUser extends UpdateUserInput {
+  withdrawalPinPaid: boolean;
+  hasPin: boolean;
+}
 
 interface Props {
   user: EditableUser;
@@ -42,6 +49,10 @@ export default function EditUserDialog({ user, onSave, onDelete }: Props) {
   const [cryptoPlan, setCryptoPlan] = useState<EditableUser["cryptoPlan"]>(
     user.cryptoPlan,
   );
+  const [withdrawalPin, setWithdrawalPin] = useState("");
+  const [withdrawalPinPaid, setWithdrawalPinPaid] = useState(
+    Boolean((user as any).withdrawalPinPaid),
+  );
 
   const handleSave = () => {
     startTransition(async () => {
@@ -54,6 +65,8 @@ export default function EditUserDialog({ user, onSave, onDelete }: Props) {
           profit,
           tradeStatus,
           cryptoPlan,
+          withdrawalPin: withdrawalPin || undefined,
+          withdrawalPinPaid,
         };
         await updateUser(updated);
         toast.success("User updated successfully");
@@ -87,6 +100,7 @@ export default function EditUserDialog({ user, onSave, onDelete }: Props) {
         <DialogHeader>
           <DialogTitle>Edit User</DialogTitle>
         </DialogHeader>
+        <ScrollArea className="max-h-[400px] flex flex-col gap-2">
         <div className="">
           <p>Accumulative Balance</p>
           <Input
@@ -118,6 +132,35 @@ export default function EditUserDialog({ user, onSave, onDelete }: Props) {
             onChange={(e) => setProfit(Number(e.target.value))}
             placeholder="Profit"
           />
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center gap-2">
+            <Label htmlFor="withdrawalPin">Withdrawal PIN</Label>
+            {user.hasPin ? (
+              <Badge variant="secondary">PIN exists</Badge>
+            ) : (
+              <Badge variant="outline">No PIN</Badge>
+            )}
+          </div>
+          <Input
+            id="withdrawalPin"
+            value={withdrawalPin}
+            onChange={(e) => setWithdrawalPin(e.target.value)}
+            placeholder={user.hasPin ? "Enter new PIN" : "Enter PIN"}
+          />
+          <p className="text-xs text-yellow-400">
+            {user.hasPin ? "A PIN is already set for this user." : "No PIN is currently set."}
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Switch
+            id="withdrawalPinPaid"
+            checked={withdrawalPinPaid}
+            onCheckedChange={(checked) => setWithdrawalPinPaid(Boolean(checked))}
+          />
+          <Label htmlFor="withdrawalPinPaid">Withdrawal PIN paid</Label>
         </div>
 
         <div className="">
@@ -158,6 +201,7 @@ export default function EditUserDialog({ user, onSave, onDelete }: Props) {
           </Select>
         </div>
 
+</ScrollArea>
         <div className="flex justify-between pt-2">
           <Button
             variant="destructive"

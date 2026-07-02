@@ -34,7 +34,7 @@ interface DashboardData {
 }
 
 export default function SectionCards({ data }: { data: DashboardData }) {
-  const theme = useTheme();
+  const { theme } = useTheme();
   const usd = (n: number) => `$${n.toFixed(2)}`;
   const btc = (n: number) => n.toFixed(8);
 
